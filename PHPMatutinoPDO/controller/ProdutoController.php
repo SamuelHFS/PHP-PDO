@@ -1,16 +1,23 @@
 <?php
-include_once 'C:/xampp/htdocs/PHPMatutinoPDO/dao/DaoProduto.php';
-include_once 'C:/xampp/htdocs/PHPMatutinoPDO/model/Produto.php';
+
+#include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/dao/DaoProduto.php';
+#include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/model/Produto.php';
+
+
+include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/dao/DaoProduto.php';
+include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Produto.php';
+
 
 class ProdutoController {
     
     public function inserirProduto($nomeProduto, $vlrCompra, 
-            $vlrVenda, $qtdEstoque){
+            $vlrVenda, $qtdEstoque, $fornecedor){
         $produto = new Produto();
         $produto->setNomeProduto($nomeProduto);
         $produto->setVlrCompra($vlrCompra);
         $produto->setVlrVenda($vlrVenda);
         $produto->setQtdEstoque($qtdEstoque);
+        $produto->setFornecedor($fornecedor);
         
         $daoProduto = new DaoProduto();
         return $daoProduto->inserir($produto);
@@ -18,13 +25,14 @@ class ProdutoController {
     
     //método para atualizar dados de produto no BD
     public function atualizarProduto($id, $nomeProduto, $vlrCompra, 
-            $vlrVenda, $qtdEstoque){
+            $vlrVenda, $qtdEstoque, $fornecedor){
         $produto = new Produto();
         $produto->setIdProduto($id);
         $produto->setNomeProduto($nomeProduto);
         $produto->setVlrCompra($vlrCompra);
         $produto->setVlrVenda($vlrVenda);
         $produto->setQtdEstoque($qtdEstoque);
+        $produto->setFornecedor($fornecedor);
         
         $daoProduto = new DaoProduto();
         return $daoProduto->atualizarProdutoDAO($produto);
@@ -49,10 +57,10 @@ class ProdutoController {
     }
     
     //método para editar produto
-    public function editarProduto($id){
-        $daoProduto = new DaoProduto();
-        return $daoProduto->editarProdutoDAO($id);
-    }
+    //public function editarProduto($id){
+        //$daoProduto = new DaoProduto();
+        //return $daoProduto->editarProdutoDAO($id);
+   // }
     
     //método para limpar formulário
     public function limpar(){
