@@ -1,9 +1,9 @@
 <?php
-#include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/dao/DaoFornecedor.php';
-#include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/model/Fornecedor.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/DaoFornecedor.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Fornecedor.php';
 
-include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/dao/DaoFornecedor.php';
-include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Fornecedor.php';
+#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/dao/DaoFornecedor.php';
+#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Fornecedor.php';
 
 class FornecedorController {
     

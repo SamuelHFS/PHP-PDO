@@ -1,6 +1,6 @@
 <?php
-include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/controller/PessoaController.php';
-include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Pessoa.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/controller/PessoaController.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
 $pe = new Pessoa();
 $btEnviar = FALSE;
 ?>
@@ -160,7 +160,7 @@ $btEnviar = FALSE;
                                         <input class="form-control" type="text" name="bairro">
                                         <label>Cidade</label>
                                         <input class="form-control" type="text" name="cidade">
-                                        <label>UF teste</label>
+                                        <label>UF</label>
                                         <input class="form-control" type="password" name="uf">
                                         
                                     </div>

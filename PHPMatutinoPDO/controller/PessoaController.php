@@ -1,14 +1,15 @@
 <?php
-include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/dao/daoPessoa.php';
-include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/model/Pessoa.php';
-include_once 'C:/xampp/htdocs/ProAcademia/PHPMatutinoPDO/model/Endereco.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/daoPessoa.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Endereco.php';
 
 #include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/dao/DaoFornecedor.php';
 #include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Fornecedor.php';
 
 class PessoaController {
     
-    public function inserirProduto($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco, $cep, $logradouro,
+    public function inserirPessoa($nome, $dtNasc, $login, 
+    $senha, $perfil, $email, $cpf, $cep, $logradouro,
     $complemento, $bairro, $cidade, $uf){
         $pessoa = new Pessoa();
         $pessoa->setNome($nome);
@@ -18,7 +19,7 @@ class PessoaController {
         $pessoa->setPerfil($perfil);
         $pessoa->setEmail($email);
         $pessoa->setCpf($cpf);
-        $pessoa->setFkEndereco($fkEndereco);
+        
 
         $endereco = new Endereco();
         $endereco->setCep($cep);
@@ -28,12 +29,16 @@ class PessoaController {
         $endereco->setCidade($cidade);
         $endereco->setUf($uf);
 
+        $endereco->setEndereco($pessoa);
+
         $daoPessoa = new DaoPessoa();
-        return $daoPessoa->inserir($pessoa,$endereco);
+        return $daoPessoa->inserir($endereco);
     }
     
     //método para atualizar dados de produto no BD
-    public function atualizarPessoa($idpessoa, $nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco){
+    public function atualizarPessoa($idpessoa, $nome, $dtNasc, 
+    $login, $senha, $perfil, $email, $cpf,  $cep, $logradouro,
+    $complemento, $bairro, $cidade, $uf){
         $pessoa = new Pessoa();
         $pessoa->setIdpessoa($idpessoa);
         $pessoa->setNome($nome);
@@ -43,7 +48,9 @@ class PessoaController {
         $pessoa->setPerfil($perfil);
         $pessoa->setEmail($email);
         $pessoa->setCpf($cpf);
-        $pessoa->setFkEndereco($fkEndereco);
+
+        $pessoa->setCom
+       
         
         $daoPessoa = new DaoPessoa();
         return $daoPessoa->atualizarPessoaDAO($pessoa);
