@@ -160,7 +160,7 @@ $btEnviar = FALSE;
                                         <input class="form-control" type="text" name="bairro">
                                         <label>Cidade</label>
                                         <input class="form-control" type="text" name="cidade">
-                                        <label>UF</label>
+                                        <label>UF teste</label>
                                         <input class="form-control" type="password" name="uf">
                                         
                                     </div>
