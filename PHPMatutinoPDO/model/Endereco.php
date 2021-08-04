@@ -9,6 +9,7 @@ class Endereco {
     private $bairro;
     private $cidade;
     private $uf;
+ 
     
 
     /**
@@ -150,4 +151,6 @@ class Endereco {
 
         return $this;
     }
+
+  
 }

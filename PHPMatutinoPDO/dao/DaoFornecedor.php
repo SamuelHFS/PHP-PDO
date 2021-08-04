@@ -34,16 +34,20 @@ class DaoFornecedor {
                 //o cep e o logradouro informado.
                 $stmt = $conecta->prepare("select idEndereco "
                 . "from endereco where cep = ? and "
-                . "logradouro = ? limit 1");
+                . "logradouro = ? and complemento = ? limit 1");
                 $stmt->bindParam(1, $cep);
                 $stmt->bindParam(2, $logradouro);
-                $lindaEndereco = $stmt->execute();
+                $stmt->bindParam(3, $complemento);
+                if($stmt->execute()){
+                  if($stmt->rowCount()>0){
+                    $msg->setMsg("".$st->rowCount());
+                    while($linha = $stmt-fetch(PDO::FETCH_OBJ)){
 
-                if($linhaEndereco){
-                    $fkEnd = $linhaEndereco->idEndereco;
-                }else{
+                    }
+                    //$msg->setMsg("$fkEnd");
+                  }else{
                     $st2 = $conecta->prepare("insert into "
-                    . "endereco values (null, ?,?,?,?,?,?");
+                    . "endereco values (null, ?,?,?,?,?,?)");
 
 
                     

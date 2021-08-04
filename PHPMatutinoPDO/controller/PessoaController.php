@@ -29,59 +29,10 @@ class PessoaController {
         $endereco->setCidade($cidade);
         $endereco->setUf($uf);
 
-        $endereco->setEndereco($pessoa);
+        $pessoa->setEndereco($endereco);
 
         $daoPessoa = new DaoPessoa();
-        return $daoPessoa->inserir($endereco);
+        return $daoPessoa->inserir($pessoa);
     }
     
-    //método para atualizar dados de produto no BD
-    public function atualizarPessoa($idpessoa, $nome, $dtNasc, 
-    $login, $senha, $perfil, $email, $cpf,  $cep, $logradouro,
-    $complemento, $bairro, $cidade, $uf){
-        $pessoa = new Pessoa();
-        $pessoa->setIdpessoa($idpessoa);
-        $pessoa->setNome($nome);
-        $pessoa->setDtNasc($dtNasc);
-        $pessoa->setLogin($login);
-        $pessoa->setSenha($senha);
-        $pessoa->setPerfil($perfil);
-        $pessoa->setEmail($email);
-        $pessoa->setCpf($cpf);
-
-        $pessoa->setCom
-       
-        
-        $daoPessoa = new DaoPessoa();
-        return $daoPessoa->atualizarPessoaDAO($pessoa);
-    }
-    
-    //método para carregar a lista de produtos que vem da DAO
-    public function listarPessoas(){
-        $daoPessoa = new DaoPessoa();
-        return $daoPessoa->listarPessoasDAO();
-    }
-    
-    //método para excluir produto
-    public function excluirPessoa($id){
-        $daoPessoa = new DaoPessoa();
-        return $daoPessoa->excluirPessoaDAO($id);
-    }
-    
-    //método para retornar objeto produto com os dados do BD
-    public function pesquisarPessoaId($id){
-        $daoPessoa = new DaoPessoa();
-        return $daoPessoa->pesquisarPessoaIdDAO($id);
-    }
-    
-    //método para editar produto
-    //public function editarProduto($id){
-        //$daoProduto = new DaoProduto();
-        //return $daoProduto->editarProdutoDAO($id);
-   // }
-    
-    //método para limpar formulário
-    public function limpar(){
-        return $pe = new Pessoa();
-    }
 }
