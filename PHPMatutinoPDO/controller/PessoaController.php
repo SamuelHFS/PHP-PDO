@@ -11,16 +11,6 @@ class PessoaController {
     public function inserirPessoa($nome, $dtNasc, $login, 
     $senha, $perfil, $email, $cpf, $cep, $logradouro,
     $complemento, $bairro, $cidade, $uf){
-        $pessoa = new Pessoa();
-        $pessoa->setNome($nome);
-        $pessoa->setDtNasc($dtNasc);
-        $pessoa->setLogin($login);
-        $pessoa->setSenha($senha);
-        $pessoa->setPerfil($perfil);
-        $pessoa->setEmail($email);
-        $pessoa->setCpf($cpf);
-        
-
         $endereco = new Endereco();
         $endereco->setCep($cep);
         $endereco->setLogradouro($logradouro);
@@ -29,7 +19,17 @@ class PessoaController {
         $endereco->setCidade($cidade);
         $endereco->setUf($uf);
 
-        $pessoa->setEndereco($endereco);
+
+        $pessoa = new Pessoa();
+        $pessoa->setNome($nome);
+        $pessoa->setDtNasc($dtNasc);
+        $pessoa->setLogin($login);
+        $pessoa->setSenha($senha);
+        $pessoa->setPerfil($perfil);
+        $pessoa->setEmail($email);
+        $pessoa->setCpf($cpf);
+ 
+        $pessoa->setFkEndereco($endereco);
 
         $daoPessoa = new DaoPessoa();
         return $daoPessoa->inserir($pessoa);

@@ -5,16 +5,6 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Mensagem.php';
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Endereco.php';
 
-#include_once 'C:/xampp/htdocs/PHPMatutinoPDO/bd/Conecta.php';
-#include_once 'C:/xampp/htdocs/PHPMatutinoPDO/model/Produto.php';
-#include_once 'C:/xampp/htdocs/PHPMatutinoPDO/model/Mensagem.php';
-
-#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/bd/Conecta.php';
-#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Produto.php';
-#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Mensagem.php';
-#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Fornecedor.php';
-
-
 class DaoPessoa
 {
 
@@ -34,12 +24,12 @@ class DaoPessoa
             $cpf = $pessoa->getCpf();
            
 
-            $cep = $pessoa->getEndereco()->getCep();
-            $logradouro = $pessoa->getEndereco()->getLogradouro();
-            $complemento = $pessoa->getEndereco()->getComplemento();
-            $bairro = $pessoa->getEndereco()->getBairro();
-            $cidade = $pessoa->getEndereco()->getCidade();
-            $uf = $pessoa->getEndereco()->getUf();
+            $cep = $pessoa->getfkEndereco()->getCep();
+            $logradouro = $pessoa->getfkEndereco()->getLogradouro();
+            $complemento = $pessoa->getfkEndereco()->getComplemento();
+            $bairro = $pessoa->getfkEndereco()->getBairro();
+            $cidade = $pessoa->getfkEndereco()->getCidade();
+            $uf = $pessoa->getfkEndereco()->getUf();
              //$msg->setMsg("$logradouro, $complemento, $cep");
             try {
                 //processo para pegar o idendereco da tabela endereco, conforme 
@@ -52,7 +42,7 @@ class DaoPessoa
                 $st->bindParam(3, $complemento);
                 if($st->execute()){
                     if($st->rowCount() > 0){
-                        $msg->setMsg("".$st->rowCount());
+                        //$msg->setMsg("".$st->rowCount());
                         while($linha = $st->fetch(PDO::FETCH_OBJ)){
                             $fkEndereco = $linha->idEndereco;
                         }
@@ -60,6 +50,7 @@ class DaoPessoa
                     }else{
                         $st2 = $conecta->prepare("insert into "
                         . "endereco values (null,?,?,?,?,?,?)");
+                        //TEM QUE ESTAR NA MESMA ORDEM DO BANCO DE DADOS
                 $st2->bindParam(1, $cep);
                 $st2->bindParam(2, $logradouro);
                 $st2->bindParam(3, $complemento);
@@ -101,8 +92,8 @@ class DaoPessoa
                 $stmt->execute();
 
                 }
-                //$msg->setMsg("<p style='color: green;'>"
-                        //. "Dados Cadastrados com sucesso</p>");
+                $msg->setMsg("<p style='color: green;'>"
+                        . "Dados Cadastrados com sucesso</p>");
                 
             } catch (Exception $ex) {
                 $msg->setMsg($ex);

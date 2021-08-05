@@ -2,7 +2,7 @@
 
 class Pessoa {
     
-    private $idpessoa;
+    private $idPessoa;
     private $nome;
     private $dtNasc;
     private $login;
@@ -10,11 +10,9 @@ class Pessoa {
     private $perfil;
     private $email;
     private $cpf;
-    private $endereco;
+    private $fkEndereco;
     
-    function getIdpessoa() {
-        return $this->idpessoa;
-    }
+    
 
     function getNome() {
         return $this->nome;
@@ -44,9 +42,7 @@ class Pessoa {
         return $this->cpf;
     }
 
-    function setIdpessoa($idpessoa) {
-        $this->idpessoa = $idpessoa;
-    }
+    
 
     function setNome($nome) {
         $this->nome = $nome;
@@ -79,21 +75,41 @@ class Pessoa {
 
 
     /**
-     * Get the value of endereco
+     * Get the value of idPessoa
      */ 
-    public function getEndereco()
+    public function getIdPessoa()
     {
-        return $this->endereco;
+        return $this->idPessoa;
     }
 
     /**
-     * Set the value of endereco
+     * Set the value of idPessoa
      *
      * @return  self
      */ 
-    public function setEndereco($endereco)
+    public function setIdPessoa($idPessoa)
     {
-        $this->endereco = $endereco;
+        $this->idPessoa = $idPessoa;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fkEndereco
+     */ 
+    public function getFkEndereco()
+    {
+        return $this->fkEndereco;
+    }
+
+    /**
+     * Set the value of fkEndereco
+     *
+     * @return  self
+     */ 
+    public function setFkEndereco($fkEndereco)
+    {
+        $this->fkEndereco = $fkEndereco;
 
         return $this;
     }

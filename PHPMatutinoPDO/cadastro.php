@@ -3,11 +3,11 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/controller/PessoaController.
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
 include_once './model/Endereco.php';
 include_once './model/Mensagem.php';
-$msg = new Mensagem();
-$pe = new Pessoa();
 
+$pe = new Pessoa();
 $en = new Endereco();
-$pe->setEndereco($en);
+$msg = new Mensagem();
+$pe->setfkEndereco($en);
 $btEnviar = FALSE;
 ?>
 
@@ -85,6 +85,8 @@ $btEnviar = FALSE;
                 if (isset($_POST['cadastrar'])) {
                     $nome = trim($_POST['nome']);
                     if ($nome != ""){
+                    $idpessoa = $_POST['idpessoa'];
+                    $nome = $_POST['nome'];
                     $dtNasc = $_POST['dtNasc'];
                     $login = $_POST['login'];
                     $senha = $_POST['senha'];
@@ -120,87 +122,13 @@ $btEnviar = FALSE;
                                 URL='cadastro.php'\">";
                 }
             }
-            //método para atualizar dados do produto no BD
-            if (isset($_POST['atualizarPessoa'])) {
-                $nomeFornecedor = trim($_POST['nome']);
-                if ($nomeFornecedor != "") {
-                    $idfornecedor = $_POST['idfornecedor'];
-                    $logradouro = $_POST['logradouro'];
-                    $complemento = $_POST['complemento'];
-                    $bairro = $_POST['bairro'];
-                    $cidade = $_POST['cidade'];
-                    $uf = $_POST['uf'];
-                    $cep = $_POST['cep'];
-                    $representante = $_POST['representante'];
-                    $email = $_POST['email'];
-                    $telFixo = $_POST['telFixo'];
-                    $telCel = $_POST['telCel'];
-
-                    $fc = new FornecedorController();
-                    unset($_POST['atualizarFornecedor']);
-                    $msg = $fc->atualizarFornecedor($idfornecedor, $nomeFornecedor, 
-                        $logradouro, $complemento, $bairro, $cidade, $uf, $cep,
-                        $representante, $email, $telFixo, $telCel);
-                    echo $msg->getMsg();
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                        URL='cadastroFornecedor.php'\">";
-                }
-            }
             
-            if (isset($_POST['excluir'])) {
-                if ($fr != null) {
-                    $id = $_POST['ide'];
-                    
-                    $fc = new FornecedorController();
-                    unset($_POST['excluir']);
-                    $msg = $fc->excluirFornecedor($id);
-                    echo $msg->getMsg();
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                        URL='cadastroFornecedor.php'\">";
-                }
-            }
-            
-            if (isset($_POST['excluirFornecedor'])) {
-                if ($fr != null) {
-                    $id = $_POST['idfornecedor'];
-                    unset($_POST['excluirFornecedor']);
-                    $fc = new FornecedorController();
-                    $msg = $fc->excluirFornecedor($id);
-                    echo $msg->getMsg();
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                        URL='cadastroFornecedor.php'\">";
-                }
-            }
-
-            if (isset($_POST['limpar'])) {
-                $fr = null;
-                unset($_GET['id']);
-                header("Location: cadastroFornecedor.php");
-            }
-            if (isset($_GET['id'])) {
-                $btEnviar = TRUE;
-                $btAtualizar = TRUE;
-                $btExcluir = TRUE;
-                $id = $_GET['id'];
-                $fc = new FornecedorController();
-                $fr = $fc->pesquisarFornecedorId($id);
-            }
                 ?>
                 <div class="card-body border">
                     <form method="post" action="">
                         <div class="row">
-                            <div class="col-md-6">
-                            <strong>Código: <label style="color:red;">
-                                            <?php
-                                            if ($pe != null) {
-                                                echo $pe->getIdpessoa();
-                                                ?>
-                                            </label></strong>
-                                        <input type="hidden" name="idpessoa" 
-                                               value="<?php echo $pe->getIdpessoa(); ?>"><br>
-                                               <?php
-                                           }
-                                           ?>  
+                            <div class="col-md-6"><br>
+                           
                                 <label>Nome Completo</label>
                                 <input class="form-control" type="text" name="nome" value="<?php echo $pe->getNome(); ?>">
                                 <label>Data de Nascimento</label>
@@ -208,7 +136,7 @@ $btEnviar = FALSE;
                                 <label>E-Mail</label>
                                 <input class="form-control" type="email" name="email" value="<?php echo $pe->getEmail(); ?>">
                                 <label>CPF</label>
-                                <input class="form-control" type="text" name="cpf" value="<?php echo $pe->getCPF(); ?>">
+                                <input class="form-control" type="text" name="cpf" value="<?php echo $pe->getCpf(); ?>">
                             </div>
 
                             <div class="col-md-6"><br>
@@ -219,7 +147,7 @@ $btEnviar = FALSE;
                                 <label>Senha</label>
                                 <input class="form-control" type="password" name="senha" value="<?php echo $pe->getSenha(); ?>">
                                 <label>Conf. Senha</label>
-                                <input class="form-control" type="password" name="senha2" value="<?php echo $pe->getSenha(); ?>">
+                                <input class="form-control" type="password" name="senha2" >
                                 <label>Perfil</label>
                                 <select name="perfil" class="form-select" >
                                     <option hidden>Selecione</option>
@@ -237,32 +165,44 @@ $btEnviar = FALSE;
                             <form method="post" action="">
                                 <div class="row">
                                     <div class="col-md-6">
-                                       <br>
+                                       
+                                       <strong>Código: <label style="color:red;">
+                                            <?php
+                                            if ($en != null) {
+                                                echo $en->getIdEndereco();
+                                                ?>
+                                            </label></strong>
+                                        <input type="hidden" name="idEndereco" 
+                                               value="<?php echo $en->getIdEndereco(); ?>"><br>
+                                               <?php
+                                           }
+                                           ?>  
                                         <label>CEP</label>
                                         <label id="valCep" style="color: red; font-size: 11px;"></label>
                                         <input class="form-control" type="text" name="cep" id="cep" 
                                            onkeypress="mascara(this, '#####-###')" maxlength="9"
-                                           value="<?php echo $pe->getEndereco()->getCep(); ?>">
+                                           value="<?php echo $pe->getfkendereco()->getCep(); ?>">
 
                                         <label>Logradouro</label>
                                         <input class="form-control" type="text" name="logradouro"id="rua"
-                                           value="<?php echo $pe->getEndereco()->getLogradouro(); ?>">
+                                           value="<?php echo $pe->getfkEndereco()->getLogradouro(); ?>">
                                         <label>Complemento</label>
                                         <input class="form-control" type="text" name="complemento" id="complemento"
-                                           value="<?php echo $pe->getEndereco()->getComplemento(); ?>">
+                                           value="<?php echo $pe->getfkEndereco()->getComplemento(); ?>">
                                     </div>
 
                                     <div class="col-md-6"><br>
+                                   
 
                                         <label>Bairro</label>
                                         <input class="form-control" type="text" name="bairro" id="bairro"
-                                           value="<?php echo $pe->getEndereco()->getBairro(); ?>">
+                                           value="<?php echo $pe->getfkEndereco()->getBairro(); ?>">
                                         <label>Cidade</label>
                                         <input class="form-control" type="text" name="cidade" id="cidade"
-                                           value="<?php echo $pe->getEndereco()->getCidade(); ?>">
+                                           value="<?php echo $pe->getfkEndereco()->getCidade(); ?>">
                                         <label>UF</label>
                                         <input class="form-control" type="text" name="uf" id="uf"
-                                           value="<?php echo $pe->getEndereco()->getUf(); ?>">
+                                           value="<?php echo $pe->getfkEndereco()->getUf(); ?>">
                                         
                                     </div>
                                 </div>
