@@ -227,16 +227,17 @@ $btExcluir = FALSE;
                             </div>
 
                             <div class="col-md-6"><br>
-
-
                                 <label>Login</label>
                                 <input class="form-control" type="text" name="login" value="<?php echo $pe->getLogin(); ?>">
+
                                 <label>Senha</label>
                                 <input class="form-control" type="password" name="senha" value="<?php echo $pe->getSenha(); ?>">
+
                                 <label>Conf. Senha</label>
                                 <input class="form-control" type="password" name="senha2" >
+
                                 <label>Perfil</label>
-                                <select name="perfil" class="form-select" >
+                                <select name="perfil" type="text" class="form-select" >
                                     <option hidden>Selecione</option>
                                     <option>
                                     <?php
@@ -259,21 +260,12 @@ $btExcluir = FALSE;
                         </div>
 
                         <div class="card-body ">
-                            <form method="post" action="">
+                
                                 <div class="row">
-                                    <div class="col-md-6">
-                                       
-                                       <strong>Código: <label style="color:red;">
-                                            <?php
-                                            if ($en != null) {
-                                                echo $en->getIdEndereco();
-                                                ?>
-                                            </label></strong>
-                                        <input type="hidden" name="idEndereco" 
-                                               value="<?php echo $en->getIdEndereco(); ?>"><br>
-                                               <?php
-                                           }
-                                           ?>  
+                                 
+                                <label>Código: </label> <br>
+                                
+                                <div class="col-md-6">
                                         <label>CEP</label>
                                         <label id="valCep" style="color: red; font-size: 11px;"></label>
                                         <input class="form-control" type="text" name="cep" id="cep" 
@@ -363,7 +355,7 @@ $btExcluir = FALSE;
                                     <th>Nome</th>
                                     <th>Data de Nasc</th>
                                     <th>Perfil</th>
-                                    <th>Email/th>
+                                    <th>Email</th>
                                     <th>CPF</th>
                                     <th>UF</th>
                                     <th>CEP</th>
@@ -421,6 +413,7 @@ $btExcluir = FALSE;
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <?php
                                     }
                                 }
