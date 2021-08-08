@@ -253,31 +253,27 @@ public function listarPessoasDAO()
 }
 
 //método para excluir produto na tabela produto
-public function excluirPessoaDAO($id)
-{
+public function excluirPessoaDAO($id){
     $conn = new Conecta();
     $conecta = $conn->conectadb();
     $msg = new Mensagem();
-    if ($conecta) {
+    if($conecta){
         try {
             $stmt = $conecta->prepare("delete from pessoa "
-                . "where fkEndereco = ?");
-            $stmt->bindParam(1, $id);
-            $stmt->execute();
-            $stmt = $conecta->prepare("delete from pessoa "
-                . "where idpessoa = ?");
+                    . "where idpessoa = ?");
             $stmt->bindParam(1, $id);
             $stmt->execute();
             $msg->setMsg("<p style='color: #d6bc71;'>"
-                . "Dados excluídos com sucesso.</p>");
+                    . "Dados excluídos com sucesso.</p>");
         } catch (Exception $ex) {
             $msg->setMsg($ex);
         }
-    } else {
-        $msg->setMsg("<p style='color: red;'>'Banco inoperante!'</p>");
+    }else{
+        $msg->setMsg("<p style='color: red;'>'Banco inoperante!'</p>"); 
     }
     $conn = null;
     return $msg;
+
 }
 
 //método para os dados de produto por id

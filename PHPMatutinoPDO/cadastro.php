@@ -1,15 +1,14 @@
 <?php
-include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/controller/PessoaController.php';
-include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
+include_once 'controller/PessoaController.php';
+include_once './model/Pessoa.php';
 include_once './model/Endereco.php';
 include_once './model/Mensagem.php';
-$msg = new Mensagem();
-$en = new Endereco();
 $pe = new Pessoa();
-$pe->setfkEndereco($en);
+$en = new Endereco();
+$msg = new Mensagem();
+$pe->setFkEndereco($en);
 $btEnviar = FALSE;
 $btAtualizar = FALSE;
-$btExcluir = FALSE;
 ?>
 
 <!DOCTYPE html>
@@ -126,8 +125,15 @@ $btExcluir = FALSE;
             //método para atualizar dados do produto no BD
             if (isset($_POST['atualizarPessoa'])) {
                 $nome = trim($_POST['nome']);
-                if ($nome != "") {
-                    $idpessoa = $_POST['idpessoa'];
+                if ($nome != "") { 
+                    
+                    $dtNasc = $_POST['dtNasc'];
+                    $login = $_POST['login'];
+                    $senha = $_POST['senha'];
+                    $perfil = $_POST['perfil'];
+                    $cpf = $_POST['cpf'];
+                    $email = $_POST['email'];
+                    
                     $logradouro = $_POST['logradouro'];
                     $complemento = $_POST['complemento'];
                     $bairro = $_POST['bairro'];
@@ -135,16 +141,11 @@ $btExcluir = FALSE;
                     $uf = $_POST['uf'];
                     $cep = $_POST['cep'];
 
-                    $dtNasc = $_POST['dtNasc'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
-                    $perfil = $_POST['perfil'];
-                    $cpf = $_POST['cpf'];
-                    $email = $_POST['email'];
+                   
 
                     $pc = new PessoaController();
                     unset($_POST['atualizarPessoa']);
-                    $msg = $fc->atualizarFornecedor($idpessoa, $nome,
+                    $msg = $pc->atualizarPessoa($idpessoa, $nome,
                     $dtNasc,
                     $login,
                     $senha,
@@ -162,18 +163,7 @@ $btExcluir = FALSE;
                         URL='cadastro.php'\">";
                 }
             }
-            if (isset($_POST['excluir'])) {
-                if ($pe != null) {
-                    $id = $_POST['ide'];
-                    
-                    $pc = new PessoaController();
-                    unset($_POST['excluir']);
-                    $msg = $pc->excluirPessoa($id);
-                    echo $msg->getMsg();
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                        URL='cadastro.php'\">";
-                }
-            }
+           
             if (isset($_POST['excluirPessoa'])) {
                 if ($pe != null) {
                     $id = $_POST['idpessoa'];
@@ -185,7 +175,7 @@ $btExcluir = FALSE;
                         URL='cadastro.php'\">";
                 }
             }
-            if (isset($_POST['limpar'])) {
+            if (isset($_POST['Limpar'])) {
                 $pe = null;
                 unset($_GET['id']);
                 header("Location: cadastro.php");
@@ -200,6 +190,7 @@ $btExcluir = FALSE;
             }
             
                 ?>
+                
                 <div class="card-body border">
                     <form method="post" action="">
                         <div class="row">
@@ -215,8 +206,7 @@ $btExcluir = FALSE;
                                                <?php
                                            }
                                            ?>  
-                           
-                                <label>Nome Completo</label>
+                                 <label>Nome Completo</label>
                                 <input class="form-control" type="text" name="nome" value="<?php echo $pe->getNome(); ?>">
                                 <label>Data de Nascimento</label>
                                 <input class="form-control" type="date" name="dtNasc" value="<?php echo $pe->getDtNasc(); ?>">
@@ -225,17 +215,14 @@ $btExcluir = FALSE;
                                 <label>CPF</label>
                                 <input class="form-control" type="text" name="cpf" value="<?php echo $pe->getCpf(); ?>">
                             </div>
-
-                            <div class="col-md-6"><br>
+                            <div class="col-md-6">
+                                <br>
                                 <label>Login</label>
                                 <input class="form-control" type="text" name="login" value="<?php echo $pe->getLogin(); ?>">
-
                                 <label>Senha</label>
                                 <input class="form-control" type="password" name="senha" value="<?php echo $pe->getSenha(); ?>">
-
                                 <label>Conf. Senha</label>
                                 <input class="form-control" type="password" name="senha2" >
-
                                 <label>Perfil</label>
                                 <select name="perfil" type="text" class="form-select" >
                                     <option hidden>Selecione</option>
@@ -252,155 +239,108 @@ $btExcluir = FALSE;
                                          }?>Funcionáro</option>
                                 
                                 </select>
+                                
+                                
                             </div>
                         </div>
                         <hr class="featurette-divider ">
                         <div class="card-header bg-light text-center border" style="padding-bottom: 15px; padding-top: 15px;">
-                            Preencha seu endereço
+                            Endereço do cliente
                         </div>
-
-                        <div class="card-body ">
-                
+                        <div class="col-12 ">
+                            <div class="card-header bg-light text-center text-dark border">
                                 <div class="row">
-                                 
                                 <label>Código: </label> <br>
+                                </div>
+                                <div class="row">
                                 
-                                <div class="col-md-6">
-                                        <label>CEP</label>
-                                        <label id="valCep" style="color: red; font-size: 11px;"></label>
-                                        <input class="form-control" type="text" name="cep" id="cep" 
-                                           onkeypress="mascara(this, '#####-###')" maxlength="9"
-                                           value="<?php echo $pe->getfkendereco()->getCep(); ?>">
-
+                                    <div class="col-md-6 ">
+                                        <label>CEP</label><br>
+                                        <input class="form-control" type="text" id="cep" onkeypress="mascara(this, '#####-###')" maxlength="9" value="<?php echo $pe->getFkEndereco()->getCep(); ?>" name="cep">
                                         <label>Logradouro</label>
-                                        <input class="form-control" type="text" name="logradouro"id="rua"
-                                           value="<?php echo $pe->getfkEndereco()->getLogradouro(); ?>">
+                                        <input type="text" class="form-control" name="logradouro" id="rua" value="<?php echo $pe->getFkEndereco()->getLogradouro(); ?>" >
                                         <label>Complemento</label>
-                                        <input class="form-control" type="text" name="complemento" id="complemento"
-                                           value="<?php echo $pe->getfkEndereco()->getComplemento(); ?>">
+                                        <input type="text" class="form-control" name="complemento" id="complemento" <?php echo $pe->getFkEndereco()->getComplemento(); ?>" >
                                     </div>
-
-                                    <div class="col-md-6"><br>
-                                   
-
+                                    <div class="col-md-6">
                                         <label>Bairro</label>
-                                        <input class="form-control" type="text" name="bairro" id="bairro"
-                                           value="<?php echo $pe->getfkEndereco()->getBairro(); ?>">
+                                        <input type="text" class="form-control" name="bairro" id="bairro" value="<?php echo $pe->getFkEndereco()->getBairro(); ?>" >
                                         <label>Cidade</label>
-                                        <input class="form-control" type="text" name="cidade" id="cidade"
-                                           value="<?php echo $pe->getfkEndereco()->getCidade(); ?>">
+                                        <input type="text" class="form-control" name="cidade" id="cidade" value="<?php echo $pe->getFkEndereco()->getCidade(); ?>" >
                                         <label>UF</label>
-                                        <input class="form-control" type="text" name="uf" id="uf"
-                                           value="<?php echo $pe->getfkEndereco()->getUf(); ?>">
-                                        
-                                           <input type="submit" name="cadastrarPessoa"
-                                           class="btn btn-success btInput" value="Enviar"
-                                           <?php if($btEnviar == TRUE) echo "disabled"; ?>>
-                                    <input type="submit" name="atualizarPessoa"
-                                           class="btn btn-secondary btInput" value="Atualizar"
-                                           <?php if($btAtualizar == FALSE) echo "disabled"; ?>>
-                                    <button type="button" class="btn btn-warning btInput" 
-                                            data-bs-toggle="modal" data-bs-target="#ModalExcluir"
-                                            <?php if($btExcluir == FALSE) echo "disabled"; ?>>
-                                        Excluir
-                                    </button>
-                                     <!-- Modal para excluir -->
-                                     <div class="modal fade" id="ModalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" 
-                                                        id="exampleModalLabel">
-                                                        Confirmar Exclusão</h5>
-                                                    <button type="button" 
-                                                            class="btn-close" 
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close">
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h5>Deseja Excluir?</h5>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="submit" name="excluirPessoa"
-                                                           class="btn btn-success "
-                                                           value="Sim">
-                                                    <input type="submit" 
-                                                        class="btn btn-light btInput" 
-                                                        name="limpar" value="Não">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- fim do modal para excluir -->
-                                    &nbsp;&nbsp;
-                                    <input type="submit" 
-                                           class="btn btn-light btInput" 
-                                           name="limpar" value="Limpar">
+                                        <input type="text" class="form-control" name="uf" id="uf" value="<?php echo $pe->getFkEndereco()->getUf(); ?>" maxlength="2" >
                                     </div>
                                 </div>
-                                
-                            </form>
+                            </div>
                         </div>
+
+                        <div class="col-6 offset-4">
+                            <input type="submit" name="cadastrar" class="btn btn-success btInput" value="Enviar">
+                            &nbsp;&nbsp;
+                            <input type="reset" class="btn btn-light btInput" value="Limpar">
+                            &nbsp;&nbsp;
+                            <input type="submit" name="atualizar"
+                                           class="btn btn-secondary btInput" value="Atualizar"
+                                           <?php if($btAtualizar == FALSE) echo "disabled"; ?>>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
-        <div class="col-10 offset-1">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-striped table-responsive"
+            <table class="table table-striped table-responsive"
                                style="border-radius: 3px; overflow:hidden;">
                             <thead class="table-dark">
                                 <tr><th>Código</th>
                                     <th>Nome</th>
-                                    <th>Data de Nasc</th>
-                                    <th>Perfil</th>
+                                    <th>Data de Nascimento</th>
                                     <th>Email</th>
                                     <th>CPF</th>
-                                    <th>UF</th>
+                                    <th>Perfil</th>
                                     <th>CEP</th>
-                                    <th colspan="2">Ações</th></tr>
+                                    <th>Complemento</th>
+                                    
+                                    <th>Ações</th></tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $pcTable = new PessoaController();
-                                $listarPessoas = $pcTable->listarPessoas();
+                                $listaPessoas = $pcTable->listarPessoas();
                                 $a = 0;
-                                if ($listarPessoas != null) {
-                                    foreach ($listarPessoas as $lp) {
+                                if ($listaPessoas != null) {
+                                    foreach ($listaPessoas as $lp) {
                                         $a++;
                                         ?>
                                         <tr>
                                             <td><?php print_r($lp->getIdPessoa()); ?></td>
                                             <td><?php print_r($lp->getNome()); ?></td>
                                             <td><?php print_r($lp->getDtNasc()); ?></td>
-                                            <td><?php print_r($lp->getPerfil()); ?></td>
                                             <td><?php print_r($lp->getEmail()); ?></td>
                                             <td><?php print_r($lp->getCpf()); ?></td>
-                                            <td><?php print_r($lp->getfkEndereco()->getUf()); ?></td>
-                                            <td><?php print_r($lp->getfkEndereco()->getCep()); ?></td>
-                                            <td><a href="cadastro.php?id=<?php echo $lP->getIdPessoa(); ?>"
+                                            <td><?php print_r($lp->getPerfil()); ?></td>
+                                            <td><?php print_r($lp->getFkEndereco()->getCep()); ?></td>
+                                            <td><?php print_r($lp->getFkEndereco()->getComplemento()); ?></td>
+                                            <td><a href="cadastro.php?id=<?php echo $lp->getIdPessoa(); ?>"
                                                    class="btn btn-light">
-                                                    <img src="img/edita.png" width="24"></a>
+                                                    <img src="img/edita.png" width="32"></a>
                                                 </form>
                                                 <button type="button" 
                                                         class="btn btn-light" data-bs-toggle="modal" 
                                                         data-bs-target="#exampleModal<?php echo $a; ?>">
-                                                    <img src="img/delete.png" width="24"></button></td>
+                                                    <img src="img/delete.png" width="32"></button></td>
+                                            
                                         </tr>
                                         <!-- Modal -->
                                     <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
                                                     <button type="button" class="btn-close" 
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="">
-                                                        <label><strong>Deseja excluir a Pessoa 
-                                                                <?php echo $lp->getNome(); ?>?</strong></label>
+                                                    <form method="get" action="">
+                                                        <label><strong>Deseja excluir essa Pessoa? 
+                                                                <?php echo $lp->getNome(); ?></strong></label>
                                                         <input type="hidden" name="ide" 
                                                                value="<?php echo $lp->getIdPessoa(); ?>">
                                                         </div>
@@ -413,23 +353,17 @@ $btExcluir = FALSE;
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                         <?php
                                     }
                                 }
                                 ?>
                                 </tbody>
                         </table>
-                    </div>
-                </div>
         </div>
     </div>
-
-        <script src="js/bootstrap.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jQuery.js"></script>
-        <script src="js/jQuery.min.js"></script>
-        <script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
         var myModal = document.getElementById('myModal')
         var myInput = document.getElementById('myInput')
 
@@ -437,73 +371,95 @@ $btExcluir = FALSE;
             myInput.focus()
         })
     </script>
-        <!-- controle de endereço (ViaCep) -->
+    <script src="js/JQuery.js"></script>
+    <script src="js/JQuery.min.js"></script>
     <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
 
-$(document).ready(function() {
+        myModal.addEventListener('shown.bs.modal', function() {
+            myInput.focus()
+        })
+    </script>
+    <!-- Adicionando Javascript controle de endereço via cep-->
+    <script>
+        $(document).ready(function() {
 
-    function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#uf").val("");
-        $("#cepErro").val("");
-    }
-    
-    //Quando o campo cep perde o foco.
-    $("#cep").blur(function() {
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+                $("#cepErro").val("");
+            }
 
-        //Nova variável "cep" somente com dígitos.
-        var cep = $(this).val().replace(/\D/g, '');
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
 
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
 
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
 
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
 
-                //Preenche os campos com "..." enquanto consulta webservice.
-                $("#rua").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#uf").val("...");
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
 
-                //Consulta o webservice viacep.com.br/
-                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");
 
-                    if (!("erro" in dados)) {
-                        //Atualiza os campos com os valores da consulta.
-                        $("#rua").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#uf").val(dados.uf);
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'CEP não encontrado'
+                                })
+
+                            }
+                        });
                     } //end if.
                     else {
-                        //CEP pesquisado não foi encontrado.
+                        //cep é inválido.
                         limpa_formulário_cep();
-                        document.getElementById("valCep").innerHTML = "* CEP não encontrado";
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'CEP Inválido'
+
+                        })
                     }
-                });
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                document.getElementById("valCep").innerHTML = "* Formato inválido";
-
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    });
-});
-
-</script>
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css"> 
 </body>
 
 </html>
