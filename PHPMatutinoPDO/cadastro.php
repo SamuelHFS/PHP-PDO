@@ -1,14 +1,16 @@
 <?php
-include_once 'controller/PessoaController.php';
+include_once './controller/PessoaController.php';
 include_once './model/Pessoa.php';
 include_once './model/Endereco.php';
 include_once './model/Mensagem.php';
 $pe = new Pessoa();
+$pee = new PessoaController();
 $en = new Endereco();
 $msg = new Mensagem();
 $pe->setFkEndereco($en);
 $btEnviar = FALSE;
 $btAtualizar = FALSE;
+$btExcluir = FALSE;
 ?>
 
 <!DOCTYPE html>
@@ -82,17 +84,11 @@ $btAtualizar = FALSE;
                 <?php
                 //envio dos dados para o BD
 
-                if (isset($_POST['cadastrar'])) {
+                if (isset($_POST['cadastrarPessoa'])) {
                     $nome = trim($_POST['nome']);
                     if ($nome != ""){
-                   /*$idpessoa = $_POST['idpessoa'];*/
-                    /*$nome = $_POST['nome'];*/
-                    $dtNasc = $_POST['dtNasc'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
-                    $perfil = $_POST['perfil'];
-                    $cpf = $_POST['cpf'];
-                    $email = $_POST['email'];
+                   
+                    
                     $cep = $_POST['cep'];
                     $logradouro = $_POST['logradouro'];
                     $complemento = $_POST['complemento'];
@@ -100,9 +96,19 @@ $btAtualizar = FALSE;
                     $cidade = $_POST['cidade'];
                     $uf = $_POST['uf'];
 
-                    $pe = new PessoaController();
-                    unset($_POST['cadastrar']);
-                    $msg = $pe->inserirPessoa(
+                    
+                    $dtNasc = $_POST['dtNasc'];
+                    $login = $_POST['login'];
+                    $senha = $_POST['senha'];
+                    $perfil = $_POST['perfil'];
+                    $email = $_POST['email'];
+                    $cpf = $_POST['cpf'];
+                    
+                    
+
+                    $pc = new PessoaController();
+                    unset($_POST['cadastrarPessoa']);
+                    $msg = $pc->inserirPessoa(
                         $nome,
                         $dtNasc,
                         $login,
@@ -110,6 +116,7 @@ $btAtualizar = FALSE;
                         $perfil,
                         $email,
                         $cpf, 
+
                         $cep, 
                         $logradouro , 
                         $complemento , 
@@ -126,20 +133,24 @@ $btAtualizar = FALSE;
             if (isset($_POST['atualizarPessoa'])) {
                 $nome = trim($_POST['nome']);
                 if ($nome != "") { 
-                    
-                    $dtNasc = $_POST['dtNasc'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
-                    $perfil = $_POST['perfil'];
-                    $cpf = $_POST['cpf'];
-                    $email = $_POST['email'];
-                    
+                    $idpessoa= $_POST['idpessoa'];
                     $logradouro = $_POST['logradouro'];
                     $complemento = $_POST['complemento'];
                     $bairro = $_POST['bairro'];
                     $cidade = $_POST['cidade'];
                     $uf = $_POST['uf'];
                     $cep = $_POST['cep'];
+
+                    $nome = $_POST['nome'];
+                    $dtNasc = $_POST['dtNasc'];
+                    $login = $_POST['login'];
+                    $senha = $_POST['senha'];
+                    $perfil = $_POST['perfil'];
+                    $email = $_POST['email'];
+                    $cpf = $_POST['cpf'];
+                    
+                    
+                    
 
                    
 
@@ -163,6 +174,18 @@ $btAtualizar = FALSE;
                         URL='cadastro.php'\">";
                 }
             }
+            if (isset($_POST['excluir'])) {
+                if ($pe != null) {
+                    $id = $_POST['ide'];
+
+                    $pc = new PessoaController();
+                    unset($_POST['excluir']);
+                    $msg = $pc->excluirPessoa($id);
+                    echo $msg->getMsg();
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+                            URL='cadastro.php'\">";
+                }
+            }
            
             if (isset($_POST['excluirPessoa'])) {
                 if ($pe != null) {
@@ -171,7 +194,7 @@ $btAtualizar = FALSE;
                     $pc = new PessoaController();
                     $msg = $pc->excluirPessoa($id);
                     echo $msg->getMsg();
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
                         URL='cadastro.php'\">";
                 }
             }
@@ -226,23 +249,24 @@ $btAtualizar = FALSE;
                                 <label>Perfil</label>
                                 <select name="perfil" type="text" class="form-select" >
                                     <option hidden>Selecione</option>
-                                    <option>
+                                    <option 
                                     <?php
                                          if($pe->getPerfil() == "Cliente"){
                                              echo "selected = 'selected'";
-                                         }?>Cliente</option>
+                                         }?>>Cliente</option>
 
-                                    <option>
+                                    <option 
                                     <?php
                                          if($pe->getPerfil() === "Funcionário"){
                                              echo "selected = 'selected'";
-                                         }?>Funcionáro</option>
+                                         }?>>Funcionáro</option>
                                 
                                 </select>
                                 
                                 
                             </div>
                         </div>
+                        
                         <hr class="featurette-divider ">
                         <div class="card-header bg-light text-center border" style="padding-bottom: 15px; padding-top: 15px;">
                             Endereço do cliente
@@ -260,7 +284,7 @@ $btAtualizar = FALSE;
                                         <label>Logradouro</label>
                                         <input type="text" class="form-control" name="logradouro" id="rua" value="<?php echo $pe->getFkEndereco()->getLogradouro(); ?>" >
                                         <label>Complemento</label>
-                                        <input type="text" class="form-control" name="complemento" id="complemento" <?php echo $pe->getFkEndereco()->getComplemento(); ?>" >
+                                        <input type="text" class="form-control" name="complemento" id="complemento" value=" <?php echo $pe->getFkEndereco()->getComplemento(); ?>" >
                                     </div>
                                     <div class="col-md-6">
                                         <label>Bairro</label>
@@ -275,13 +299,50 @@ $btAtualizar = FALSE;
                         </div>
 
                         <div class="col-6 offset-4">
-                            <input type="submit" name="cadastrar" class="btn btn-success btInput" value="Enviar">
+                            <input type="submit" name="cadastrarPessoa" class="btn btn-success btInput" value="Enviar">
                             &nbsp;&nbsp;
                             <input type="reset" class="btn btn-light btInput" value="Limpar">
                             &nbsp;&nbsp;
-                            <input type="submit" name="atualizar"
-                                           class="btn btn-secondary btInput" value="Atualizar"
+                            <input type="submit" name="atualizarPessoa"
+                                           class="btn btn-secondary btInput" value="AtualizarPessoa"
                                            <?php if($btAtualizar == FALSE) echo "disabled"; ?>>
+
+                                           <button type="button" class="btn btn-warning btInput" 
+                                            data-bs-toggle="modal" data-bs-target="#ModalExcluir"
+                                            <?php if($btExcluir == FALSE) echo "disabled"; ?>>
+                                        Excluir
+                                    </button>
+                                    <!-- Modal para excluir -->
+                                    <div class="modal fade" id="ModalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" 
+                                                        id="exampleModalLabel">
+                                                        Confirmar Exclusão</h5>
+                                                    <button type="button" 
+                                                            class="btn-close" 
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close">
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Deseja Excluir?</h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" name="excluirPessoa"
+                                                           class="btn btn-success "
+                                                           value="Sim">
+                                                    <input type="submit" 
+                                                        class="btn btn-light btInput" 
+                                                        name="limpar" value="Não">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                        
+                                    <!-- fim do modal para excluir -->
                         </div>
                     </form>
                 </div>
@@ -338,7 +399,7 @@ $btAtualizar = FALSE;
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="get" action="">
+                                                    <form method="post" action="">
                                                         <label><strong>Deseja excluir essa Pessoa? 
                                                                 <?php echo $lp->getNome(); ?></strong></label>
                                                         <input type="hidden" name="ide" 

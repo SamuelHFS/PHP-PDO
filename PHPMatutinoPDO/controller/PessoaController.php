@@ -3,8 +3,6 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/daoPessoa.php';
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Endereco.php';
 
-#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/dao/DaoFornecedor.php';
-#include_once 'C:/xampp/htdocs/PAcademia/PHPMatutinoPDO/model/Fornecedor.php';
 
 class PessoaController {
     
@@ -39,13 +37,7 @@ class PessoaController {
     //método para atualizar dados de produto no BD
     public function atualizarPessoa($idpessoa, $nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, 
             $logradouro, $complemento, $bairro, $cidade, $uf, $cep){
-        $endereco = new Endereco();
-        $endereco->setCep($cep);
-        $endereco->setLogradouro($logradouro);
-        $endereco->setComplemento($complemento);
-        $endereco->setBairro($bairro);
-        $endereco->setCidade($cidade);
-        $endereco->setUf($uf);
+       
         
         $pessoa = new Pessoa();
         $pessoa->setIdPessoa($idpessoa);
@@ -56,7 +48,14 @@ class PessoaController {
         $pessoa->setPerfil($perfil);
         $pessoa->setEmail($email);
         $pessoa->setCpf($cpf);
-        
+
+        $endereco = new Endereco();
+        $endereco->setCep($cep);
+        $endereco->setLogradouro($logradouro);
+        $endereco->setComplemento($complemento);
+        $endereco->setBairro($bairro);
+        $endereco->setCidade($cidade);
+        $endereco->setUf($uf);
                 
         $pessoa->setFkEndereco($endereco);
         

@@ -12,6 +12,7 @@ class DaoPessoa
     
         $conn = new Conecta();
         $msg = new Mensagem();
+        
         $conecta = $conn->conectadb();
         if ($conecta) {
 
@@ -24,12 +25,12 @@ class DaoPessoa
             $cpf = $pessoa->getCpf();
            
 
-            $cep = $pessoa->getfkEndereco()->getCep();
-            $logradouro = $pessoa->getfkEndereco()->getLogradouro();
-            $complemento = $pessoa->getfkEndereco()->getComplemento();
-            $bairro = $pessoa->getfkEndereco()->getBairro();
-            $cidade = $pessoa->getfkEndereco()->getCidade();
-            $uf = $pessoa->getfkEndereco()->getUf();
+            $cep = $pessoa->getFkEndereco()->getCep();
+            $logradouro = $pessoa->getFkEndereco()->getLogradouro();
+            $complemento = $pessoa->getFkEndereco()->getComplemento();
+            $bairro = $pessoa->getFkEndereco()->getBairro();
+            $cidade = $pessoa->getFkEndereco()->getCidade();
+            $uf = $pessoa->getFkEndereco()->getUf();
              //$msg->setMsg("$logradouro, $complemento, $cep");
             try {
                 //processo para pegar o idendereco da tabela endereco, conforme 
@@ -47,6 +48,7 @@ class DaoPessoa
                             $fkEndereco = $linha->idEndereco;
                         }
                         //$msg->setMsg("$fkEnd");
+                        $msg->setMsg($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco );
                     }else{
                         $st2 = $conecta->prepare("insert into "
                         . "endereco values (null,?,?,?,?,?,?)");
@@ -86,14 +88,15 @@ class DaoPessoa
                 $stmt->bindParam(3, $login);
                 $stmt->bindParam(4, $senha);
                 $stmt->bindParam(5, $perfil);
-                $stmt->bindParam(6,  $email);
+                $stmt->bindParam(6, $email);
                 $stmt->bindParam(7, $cpf);
                 $stmt->bindParam(8, $fkEndereco);
                 $stmt->execute();
 
                 }
-                $msg->setMsg("<p style='color: green;'>"
-                        . "Dados Cadastrados com sucesso</p>");
+                $msg->setMsg($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco );
+               // $msg->setMsg("<p style='color: green;'>"
+                       // . "Dados Cadastrados com sucesso</p>");
                 
             } catch (Exception $ex) {
                 $msg->setMsg($ex);
@@ -116,22 +119,24 @@ class DaoPessoa
          if ($conecta) {
              $idpessoa = $pessoa->getIdPessoa();
              $nome= $pessoa->getnome();
-             $logradouro = $pessoa->getFkEndereco()->getLogradouro();
-             $complemento = $pessoa->getFkEndereco()->getComplemento();
-             $bairro = $pessoa->getFkEndereco()->getBairro();
-             $cidade = $pessoa->getFkEndereco()->getCidade();
-             $uf = $pessoa->getFkEndereco()->getUf();
-             $cep = $pessoa->getFkEndereco()->getCep();
-
-             $dtNasc = $pessoa->getDtNasc();
+              $dtNasc = $pessoa->getDtNasc();
              $login = $pessoa->getLogin();
              $senha = $pessoa->getSenha();
              $perfil = $pessoa->getPerfil();
              $email= $pessoa->getEmail();
              $cpf = $pessoa->getCpf();
+
+             $cep = $pessoa->getFkEndereco()->getCep();
+             $logradouro = $pessoa->getFkEndereco()->getLogradouro();
+             $complemento = $pessoa->getFkEndereco()->getComplemento();
+             $bairro = $pessoa->getFkEndereco()->getBairro();
+             $cidade = $pessoa->getFkEndereco()->getCidade();
+             $uf = $pessoa->getFkEndereco()->getUf();
+             
+
+            
              try {
-                 //processo para pegar o idendereco da tabela endereco, conforme 
-                 //o cep, o logradouro e o complemento informado.
+                 
                  $st = $conecta->prepare("select idEndereco "
                      . "from endereco where cep = ? and "
                      . "logradouro = ? and complemento = ? limit 1");
@@ -166,7 +171,7 @@ class DaoPessoa
                          if ($st3->execute()) {
                              if ($st3->rowCount() > 0) {
                                  $linha = $st3->fetch(PDO::FETCH_OBJ);
-                                 $fkEnd = $linha->idendereco;
+                                 $fkEndereco = $linha->idEndereco;
                              }
                          }
                      }
@@ -220,14 +225,7 @@ public function listarPessoasDAO()
             if ($rs->execute()) {
                 if ($rs->rowCount() > 0) {
                     while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
-                        $endereco = new Endereco();
-                        $endereco->setLogradouro($linha->logradouro);
-                        $endereco->setComplemento($linha->complemento);
-                        $endereco->setBairro($linha->bairro);
-                        $endereco->setCidade($linha->cidade);
-                        $endereco->setUf($linha->uf);
-                        $endereco->setCep($linha->cep);
-
+                        
                         $pessoa = new Pessoa();
                         $pessoa->setIdPessoa($linha->idpessoa);
                         $pessoa->setNome($linha->nome);
@@ -236,6 +234,21 @@ public function listarPessoasDAO()
                         $pessoa->setSenha($linha->senha);
                         $pessoa->setPerfil($linha->perfil);
                         $pessoa->setEmail($linha->email);
+                        $pessoa->setCpf($linha->cpf);
+                        
+                        
+                        $endereco = new Endereco();
+                        $endereco->setIdEndereco($linha->idEndereco);
+                        $endereco->setCep($linha->cep);
+                        $endereco->setLogradouro($linha->logradouro);
+                        $endereco->setComplemento($linha->complemento);
+                        $endereco->setBairro($linha->bairro);
+                        $endereco->setCidade($linha->cidade);
+                        $endereco->setUf($linha->uf);
+                        
+
+                        
+
                         $pessoa->setfkEndereco($endereco);
                         $lista[$a] = $pessoa;
                         $a++;
@@ -259,7 +272,9 @@ public function excluirPessoaDAO($id){
     $msg = new Mensagem();
     if($conecta){
         try {
-            $stmt = $conecta->prepare("delete from pessoa "
+            
+
+            $stmt = $conecta->prepare("delete from pessoa"
                     . "where idpessoa = ?");
             $stmt->bindParam(1, $id);
             $stmt->execute();
@@ -308,6 +323,7 @@ public function pesquisarPessoaIdDAO($id)
                         $pessoa->setSenha($linha->senha);
                         $pessoa->setPerfil($linha->perfil);
                         $pessoa->setEmail($linha->email);
+                        $pessoa->setCpf($linha->cpf);
                         $pessoa->setfkEndereco($endereco);
                         
                     }
