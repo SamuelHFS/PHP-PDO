@@ -1,16 +1,14 @@
 <?php
-include_once './controller/PessoaController.php';
-include_once './model/Pessoa.php';
+include_once 'controller/PessoaController.php';
+include_once './model/pessoa.php';
 include_once './model/Endereco.php';
 include_once './model/Mensagem.php';
 $pe = new Pessoa();
-$pee = new PessoaController();
 $en = new Endereco();
 $msg = new Mensagem();
 $pe->setFkEndereco($en);
 $btEnviar = FALSE;
 $btAtualizar = FALSE;
-$btExcluir = FALSE;
 ?>
 
 <!DOCTYPE html>
@@ -83,12 +81,17 @@ $btExcluir = FALSE;
                 </div>
                 <?php
                 //envio dos dados para o BD
-
-                if (isset($_POST['cadastrarPessoa'])) {
+                if (isset($_POST['cadastrar'])) {
                     $nome = trim($_POST['nome']);
                     if ($nome != ""){
-                   
                     
+                    
+                    $dtNasc = $_POST['dtNasc'];
+                    $login = $_POST['login'];
+                    $senha = $_POST['senha'];
+                    $perfil = $_POST['perfil'];
+                    $cpf = $_POST['cpf'];
+                    $email = $_POST['email'];
                     $cep = $_POST['cep'];
                     $logradouro = $_POST['logradouro'];
                     $complemento = $_POST['complemento'];
@@ -96,18 +99,8 @@ $btExcluir = FALSE;
                     $cidade = $_POST['cidade'];
                     $uf = $_POST['uf'];
 
-                    
-                    $dtNasc = $_POST['dtNasc'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
-                    $perfil = $_POST['perfil'];
-                    $email = $_POST['email'];
-                    $cpf = $_POST['cpf'];
-                    
-                    
-
                     $pc = new PessoaController();
-                    unset($_POST['cadastrarPessoa']);
+                    unset($_POST['cadastrar']);
                     $msg = $pc->inserirPessoa(
                         $nome,
                         $dtNasc,
@@ -116,7 +109,6 @@ $btExcluir = FALSE;
                         $perfil,
                         $email,
                         $cpf, 
-
                         $cep, 
                         $logradouro , 
                         $complemento , 
@@ -129,33 +121,25 @@ $btExcluir = FALSE;
                                 URL='cadastro.php'\">";
                 }
             }
-            //método para atualizar dados do produto no BD
-            if (isset($_POST['atualizarPessoa'])) {
+
+            if (isset($_POST['atualizar'])) {
                 $nome = trim($_POST['nome']);
-                if ($nome != "") { 
-                    $idpessoa= $_POST['idpessoa'];
+                if ($nome != "") {
+                    $idpessoa = $_POST['idpessoa'];
+                    $dtNasc = $_POST['dtNasc'];
+                    $login = $_POST['login'];
+                    $senha = $_POST['senha'];
+                    $perfil = $_POST['perfil'];
+                    $cpf = $_POST['cpf'];
+                    $email = $_POST['email'];
+                    $cep = $_POST['cep'];
                     $logradouro = $_POST['logradouro'];
                     $complemento = $_POST['complemento'];
                     $bairro = $_POST['bairro'];
                     $cidade = $_POST['cidade'];
                     $uf = $_POST['uf'];
-                    $cep = $_POST['cep'];
-
-                    $nome = $_POST['nome'];
-                    $dtNasc = $_POST['dtNasc'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
-                    $perfil = $_POST['perfil'];
-                    $email = $_POST['email'];
-                    $cpf = $_POST['cpf'];
-                    
-                    
-                    
-
-                   
-
                     $pc = new PessoaController();
-                    unset($_POST['atualizarPessoa']);
+                    unset($_POST['atualizar']);
                     $msg = $pc->atualizarPessoa($idpessoa, $nome,
                     $dtNasc,
                     $login,
@@ -172,48 +156,35 @@ $btExcluir = FALSE;
                     echo $msg->getMsg();
                     echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                         URL='cadastro.php'\">";
+                        
                 }
             }
+
             if (isset($_POST['excluir'])) {
                 if ($pe != null) {
                     $id = $_POST['ide'];
 
-                    $pc = new PessoaController();
+                    $ps = new PessoaController();
                     unset($_POST['excluir']);
-                    $msg = $pc->excluirPessoa($id);
+                    $msg = $ps->excluirPessoa($id);
                     echo $msg->getMsg();
                     echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
                             URL='cadastro.php'\">";
+
+                    
                 }
             }
-           
-            if (isset($_POST['excluirPessoa'])) {
-                if ($pe != null) {
-                    $id = $_POST['idpessoa'];
-                    unset($_POST['excluirPessoa']);
-                    $pc = new PessoaController();
-                    $msg = $pc->excluirPessoa($id);
-                    echo $msg->getMsg();
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                        URL='cadastro.php'\">";
-                }
-            }
-            if (isset($_POST['Limpar'])) {
-                $pe = null;
-                unset($_GET['id']);
-                header("Location: cadastro.php");
-            }
-            if (isset($_GET['id'])) {
+
+            
+            if (isset($_GET['id'])) { //é isso que faz preencher no formulário
                 $btEnviar = TRUE;
                 $btAtualizar = TRUE;
                 $btExcluir = TRUE;
                 $id = $_GET['id'];
                 $pc = new PessoaController();
-                $pe = $pc->pesquisarPessoaId($id);
+                $pe = $pc->pesquisarPessoaID($id);
             }
-            
                 ?>
-                
                 <div class="card-body border">
                     <form method="post" action="">
                         <div class="row">
@@ -225,18 +196,18 @@ $btExcluir = FALSE;
                                                 ?>
                                             </label></strong>
                                         <input type="hidden" name="idpessoa" 
-                                               value="<?php echo $pe->getIdPessoa(); ?>"><br>
+                                               value="<?php echo $pe->getIdPessoa() ?>"><br>
                                                <?php
                                            }
-                                           ?>  
-                                 <label>Nome Completo</label>
+                                           ?>     
+                                <label>Nome Completo</label>
                                 <input class="form-control" type="text" name="nome" value="<?php echo $pe->getNome(); ?>">
                                 <label>Data de Nascimento</label>
                                 <input class="form-control" type="date" name="dtNasc" value="<?php echo $pe->getDtNasc(); ?>">
                                 <label>E-Mail</label>
                                 <input class="form-control" type="email" name="email" value="<?php echo $pe->getEmail(); ?>">
                                 <label>CPF</label>
-                                <input class="form-control" type="text" name="cpf" value="<?php echo $pe->getCpf(); ?>">
+                                <input class="form-control" type="text" name="cpf" value="<?php echo $pe->getCpf(); ?>" maxlength="14">
                             </div>
                             <div class="col-md-6">
                                 <br>
@@ -266,9 +237,7 @@ $btExcluir = FALSE;
                                 
                             </div>
                         </div>
-                        
-                        <hr class="featurette-divider ">
-                        <div class="card-header bg-light text-center border" style="padding-bottom: 15px; padding-top: 15px;">
+                        <div class="card-header bg-LIGHT text-center text-BLACK border" style="padding-bottom: 15px; padding-top: 15px;">
                             Endereço do cliente
                         </div>
                         <div class="col-12 ">
@@ -284,7 +253,7 @@ $btExcluir = FALSE;
                                         <label>Logradouro</label>
                                         <input type="text" class="form-control" name="logradouro" id="rua" value="<?php echo $pe->getFkEndereco()->getLogradouro(); ?>" >
                                         <label>Complemento</label>
-                                        <input type="text" class="form-control" name="complemento" id="complemento" value=" <?php echo $pe->getFkEndereco()->getComplemento(); ?>" >
+                                        <input type="text" class="form-control" name="complemento" id="complemento" value="<?php echo $pe->getFkEndereco()->getComplemento(); ?>" >
                                     </div>
                                     <div class="col-md-6">
                                         <label>Bairro</label>
@@ -299,50 +268,13 @@ $btExcluir = FALSE;
                         </div>
 
                         <div class="col-6 offset-4">
-                            <input type="submit" name="cadastrarPessoa" class="btn btn-success btInput" value="Enviar">
+                            <input type="submit" name="cadastrar" class="btn btn-success btInput" value="Enviar">
                             &nbsp;&nbsp;
                             <input type="reset" class="btn btn-light btInput" value="Limpar">
                             &nbsp;&nbsp;
-                            <input type="submit" name="atualizarPessoa"
-                                           class="btn btn-secondary btInput" value="AtualizarPessoa"
+                            <input type="submit" name="atualizar"
+                                           class="btn btn-secondary btInput" value="Atualizar"
                                            <?php if($btAtualizar == FALSE) echo "disabled"; ?>>
-
-                                           <button type="button" class="btn btn-warning btInput" 
-                                            data-bs-toggle="modal" data-bs-target="#ModalExcluir"
-                                            <?php if($btExcluir == FALSE) echo "disabled"; ?>>
-                                        Excluir
-                                    </button>
-                                    <!-- Modal para excluir -->
-                                    <div class="modal fade" id="ModalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" 
-                                                        id="exampleModalLabel">
-                                                        Confirmar Exclusão</h5>
-                                                    <button type="button" 
-                                                            class="btn-close" 
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close">
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h5>Deseja Excluir?</h5>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="submit" name="excluirPessoa"
-                                                           class="btn btn-success "
-                                                           value="Sim">
-                                                    <input type="submit" 
-                                                        class="btn btn-light btInput" 
-                                                        name="limpar" value="Não">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                        </div>
-                        
-                                    <!-- fim do modal para excluir -->
                         </div>
                     </form>
                 </div>
@@ -394,14 +326,14 @@ $btExcluir = FALSE;
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                                     <button type="button" class="btn-close" 
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form method="post" action="">
                                                         <label><strong>Deseja excluir essa Pessoa? 
-                                                                <?php echo $lp->getNome(); ?></strong></label>
+                                                                <?php echo $lp->getNome(); ?>?</strong></label>
                                                         <input type="hidden" name="ide" 
                                                                value="<?php echo $lp->getIdPessoa(); ?>">
                                                         </div>

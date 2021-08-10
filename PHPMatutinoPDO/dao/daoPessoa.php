@@ -48,7 +48,7 @@ class DaoPessoa
                             $fkEndereco = $linha->idEndereco;
                         }
                         //$msg->setMsg("$fkEnd");
-                        $msg->setMsg($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco );
+                       // $msg->setMsg($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco );
                     }else{
                         $st2 = $conecta->prepare("insert into "
                         . "endereco values (null,?,?,?,?,?,?)");
@@ -94,9 +94,9 @@ class DaoPessoa
                 $stmt->execute();
 
                 }
-                $msg->setMsg($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco );
-               // $msg->setMsg("<p style='color: green;'>"
-                       // . "Dados Cadastrados com sucesso</p>");
+                //$msg->setMsg($nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, $fkEndereco );
+               $msg->setMsg("<p style='color: green;'>"
+                       . "Dados Cadastrados com sucesso</p>");
                 
             } catch (Exception $ex) {
                 $msg->setMsg($ex);
@@ -154,12 +154,13 @@ class DaoPessoa
                      } else {
                          $st2 = $conecta->prepare("insert into "
                              . "endereco values (null,?,?,?,?,?,?)");
-                         $st2->bindParam(1, $logradouro);
-                         $st2->bindParam(2, $complemento);
-                         $st2->bindParam(3, $bairro);
-                         $st2->bindParam(4, $cidade);
-                         $st2->bindParam(5, $uf);
-                         $st2->bindParam(6, $cep);
+                         $st2->bindParam(1, $cep) ;
+                         $st2->bindParam(2, $logradouro);
+                         $st2->bindParam(3, $complemento);
+                         $st2->bindParam(4, $bairro);
+                         $st2->bindParam(5, $cidade);
+                         $st2->bindParam(6, $uf);
+                        ;
                          $st2->execute();
  
                          $st3 = $conecta->prepare("select idEndereco "
@@ -309,12 +310,13 @@ public function pesquisarPessoaIdDAO($id)
                     while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
 
                         $endereco = new Endereco();
+                        $endereco->setCep($linha->cep);
                         $endereco->setLogradouro($linha->logradouro);
                         $endereco->setComplemento($linha->complemento);
                         $endereco->setBairro($linha->bairro);
                         $endereco->setCidade($linha->cidade);
                         $endereco->setUf($linha->uf);
-                        $endereco->setCep($linha->cep);
+                        
 
                         $pessoa->setIdPessoa($linha->idpessoa);
                         $pessoa->setNome($linha->nome);
