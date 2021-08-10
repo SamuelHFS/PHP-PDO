@@ -290,7 +290,6 @@ $btAtualizar = FALSE;
                                     <th>Perfil</th>
                                     <th>CEP</th>
                                     <th>Complemento</th>
-                                    
                                     <th>Ações</th></tr>
                             </thead>
                             <tbody>

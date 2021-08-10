@@ -343,7 +343,6 @@ public function pesquisarPessoaIdDAO($id)
 }
 public function procurarsenha($login, $senha)
 {
-    $pessoa = new Pessoa();
     $conn = new Conecta();
     $conecta = $conn->conectadb();
     $check = null;
@@ -361,6 +360,9 @@ public function procurarsenha($login, $senha)
                 } else {
                     $check =  false;
                 }
+            }else{
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"5;
+                URL='login.php'\">";
             }
         } catch (Exception $ex) {
             echo $ex;

@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="loginteste.php">Login</a>
+              <a class="nav-link active" aria-current="page" href="login.php">Login</a>
             </li>
             
               <a class="nav-link" href="#">Vantagens</a>
@@ -95,7 +95,7 @@
             <em>Projetin Felas</em>
           </p>
           <p>
-            <a hreg="#" class="btn btn-success">Saiba Mais >></a>
+            <a href="cadastro.php"  class="btn btn-success">Saiba Mais >></a>
           </p>
         </div>
         <div class="col-lg-4">
@@ -108,7 +108,7 @@
             <em>Projetin Felas</em>
           </p>
           <p>
-            <a hreg="#" class="btn btn-success">Saiba Mais >></a>
+            <a hreg="" class="btn btn-success">Saiba Mais >></a>
           </p>
 
         </div>

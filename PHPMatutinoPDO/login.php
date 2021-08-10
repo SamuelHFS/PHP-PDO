@@ -24,7 +24,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
     </head>
     <body>
     <?php
-        if (isset($_POST['enviarlo'])){
+        if (isset($_POST['enviar'])){
             include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/daoPessoa.php';
             
             $login = trim($_POST['login']);
@@ -79,7 +79,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
                             </div>
                             <div class="row espaco" style="margin-top: 20px;">
                                 <div class="col-md-8 offset-md-2 ">
-                                    <input class="btn btn-success" type="submit" name="enviarlo" value="Enviar"> 
+                                    <input class="btn btn-success" type="submit" name="enviar" value="Enviar"> 
                                     <input class="btn btn-light" type="reset" value="Limpar">
                                 </div>    
                             </div>
@@ -92,7 +92,6 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css"> 
+     
     </body>
 </html>
