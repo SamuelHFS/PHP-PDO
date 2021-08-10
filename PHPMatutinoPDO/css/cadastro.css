@@ -1,0 +1,184 @@
+@font-face {
+    font-family: 'Burbank Big Cd Bk';
+    src: url('fontes/BurbankBigCondensed-Black.woff2') format('woff2'),
+        url('fontes/BurbankBigCondensed-Black.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+data{
+    position: center;
+    background-color: #2a2a2a;
+    /*background-image: linear-gradient(to right,rgb(250, 236, 40, 1), rgb(104, 200, 239, 1));*/
+    width: 70%;
+    border: 100%;
+    padding: 15px;
+    color: rgb(48, 1, 1);
+    font-size: 13px;
+    cursor: pointer;
+   
+}
+#data_nascimento{
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 50px;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    font-size: 15px;
+    
+}
+
+/*.register-parent {
+    height: 100%;
+    padding: 0 2%;
+   
+    
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 670px;
+    transition: 2.8s;
+}
+
+.register {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+   
+    border: 10px solid rgb(250, 247, 247);
+    border-radius: 10px 10px 10px 10px;
+    color: rgb(240, 233, 233);
+    background-color: rgba(0, 0, 5, 0, 8);
+    transition: 2.8s;
+}*/
+.formselect{
+    position: center;
+    background-color: #ffffff;
+    /*background-image: linear-gradient(to right,rgb(250, 236, 40, 1), rgb(104, 200, 239, 1));*/
+    width: 70%;
+    border: 100%;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    cursor: pointer;
+   
+
+}
+.form-col-1{
+    width: 48%;
+    float: left;
+}
+.form-col-2{
+    
+    width: 48%;
+    float: right;
+}
+.teste{
+    color: #ffffff;
+    /*padding-bottom: 100px;*/
+    font-size: 25px;
+    float: left;
+}
+.testandoHome{
+    font-size: 25px;
+    float: right;
+    
+}
+body{
+    font-family: 'Burbank Big Cd Bk', Arial, Helvetica, sans-serif;
+    background-color: #161616;
+    background-image: url(/img/fundo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; max-width: 500px;
+}
+.box{
+   
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 0px;
+    width: 50%;
+    float: left;
+}
+
+.box1{ /*não é necessário*/
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 15px;
+    width: 20%;
+    float: right;
+}
+
+
+fieldset{
+    border: 3px solid rgb(255, 0, 0);
+   
+}
+
+legend{
+    color: rgb(0, 0, 0);
+    border: 3px solid rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 1px;
+}
+.inputBox{
+    position: relative;
+}
+
+.inputUser{ /*linhas*/
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    width: 100%;
+    letter-spacing: 2px;
+}
+.labelInput{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+    transition: .5s;
+}
+.inputUser:focus ~ .labelInput,
+.inputUser:valid ~ .labelInput{
+    top: -20px;
+    font-size: 12px;
+    color: #ff0000;
+}
+
+#submit{
+    border-color: white;
+    /*background-color: #2a2a2a;*/
+    background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(255, 0, 0));
+    background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(255, 0, 0));
+    width: 100%;
+    border: 100%;
+    padding: 15px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#submit:hover{
+    background-image: linear-gradient(to left,rgb(0, 0, 0), rgb(255, 0, 0));
+    /*background-color: #161616;*/
+  
+}

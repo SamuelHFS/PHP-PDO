@@ -48,8 +48,6 @@ class DaoFornecedor {
                   }else{
                     $st2 = $conecta->prepare("insert into "
                     . "endereco values (null, ?,?,?,?,?,?)");
-
-
                     
                 }
 
@@ -65,7 +63,10 @@ class DaoFornecedor {
                 $stmt->execute();
                 $msg->setMsg("<p style='color: green;'>"
                         . "Dados Cadastrados com sucesso</p>");
-            } catch (Exception $ex) {
+            } 
+        
+        
+        }catch (Exception $ex) {
                 $msg->setMsg($ex);
             }
         }else{
@@ -74,6 +75,7 @@ class DaoFornecedor {
         }
         $conn = null;
         return $msg;
+    
     }
     
     //método para atualizar dados da tabela fornecedor

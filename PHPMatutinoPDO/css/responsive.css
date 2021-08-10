@@ -1,0 +1,7 @@
+@media screen and (min-width: 1440px){
+
+    div.col:nth-child(1){
+        margin-left: 65px;
+    }
+    
+}

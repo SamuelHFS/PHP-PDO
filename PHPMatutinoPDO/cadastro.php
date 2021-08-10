@@ -164,9 +164,9 @@ $btAtualizar = FALSE;
                 if ($pe != null) {
                     $id = $_POST['ide'];
 
-                    $ps = new PessoaController();
+                    $pc = new PessoaController();
                     unset($_POST['excluir']);
-                    $msg = $ps->excluirPessoa($id);
+                    $msg = $pc->excluirPessoa($id);
                     echo $msg->getMsg();
                     echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
                             URL='cadastro.php'\">";

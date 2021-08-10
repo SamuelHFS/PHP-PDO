@@ -36,8 +36,18 @@ class PessoaController {
 
     //método para atualizar dados de produto no BD
     public function atualizarPessoa($idpessoa, $nome, $dtNasc, $login, $senha, $perfil, $email, $cpf, 
-            $logradouro, $complemento, $bairro, $cidade, $uf, $cep){
+            $cep, $logradouro, $complemento, $bairro, $cidade, $uf){
        
+        
+       
+
+        $endereco = new Endereco();
+        $endereco->setCep($cep);
+        $endereco->setLogradouro($logradouro);
+        $endereco->setComplemento($complemento);
+        $endereco->setBairro($bairro);
+        $endereco->setCidade($cidade);
+        $endereco->setUf($uf); 
         
         $pessoa = new Pessoa();
         $pessoa->setIdPessoa($idpessoa);
@@ -48,14 +58,6 @@ class PessoaController {
         $pessoa->setPerfil($perfil);
         $pessoa->setEmail($email);
         $pessoa->setCpf($cpf);
-
-        $endereco = new Endereco();
-        $endereco->setCep($cep);
-        $endereco->setLogradouro($logradouro);
-        $endereco->setComplemento($complemento);
-        $endereco->setBairro($bairro);
-        $endereco->setCidade($cidade);
-        $endereco->setUf($uf);
                 
         $pessoa->setFkEndereco($endereco);
         
@@ -70,8 +72,8 @@ class PessoaController {
     
     //método para excluir produto
     public function excluirPessoa($id){
-        $daoPessoa = new DaoPessoa();
-        return $daoPessoa->excluirPessoaDAO($id);
+        $daoP= new DaoPessoa();
+        return $daoP->excluirPessoaDAO($id);
     }
     
     //método para retornar objeto produto com os dados do BD

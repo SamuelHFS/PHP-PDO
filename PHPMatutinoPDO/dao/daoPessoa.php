@@ -143,7 +143,7 @@ class DaoPessoa
                  $st->bindParam(1, $cep);
                  $st->bindParam(2, $logradouro);
                  $st->bindParam(3, $complemento);
-                 $fkEndereco = "";
+                 
                  if ($st->execute()) {
                      if ($st->rowCount() > 0) {
                          //$msg->setMsg("".$st->rowCount());
@@ -160,7 +160,6 @@ class DaoPessoa
                          $st2->bindParam(4, $bairro);
                          $st2->bindParam(5, $cidade);
                          $st2->bindParam(6, $uf);
-                        ;
                          $st2->execute();
  
                          $st3 = $conecta->prepare("select idEndereco "
@@ -177,7 +176,7 @@ class DaoPessoa
                          }
                      }
                  }
-                 $stmt = $conecta->prepare("update pessoa set"
+                 $stmt = $conecta->prepare("update pessoa set "
                      . "nome = ?,"
                      . "dtNasc = ?, "
                      . "login = ?, "
@@ -275,7 +274,7 @@ public function excluirPessoaDAO($id){
         try {
             
 
-            $stmt = $conecta->prepare("delete from pessoa"
+            $stmt = $conecta->prepare("delete from pessoa "
                     . "where idpessoa = ?");
             $stmt->bindParam(1, $id);
             $stmt->execute();
@@ -341,5 +340,37 @@ public function pesquisarPessoaIdDAO($id)
          URL='../PHPMatutinoPDO/cadastro.php'\">";
     }
     return $pessoa;
+}
+public function procurarsenha($login, $senha)
+{
+    $pessoa = new Pessoa();
+    $conn = new Conecta();
+    $conecta = $conn->conectadb();
+    $check = null;
+    echo $senha;
+    if ($conecta) {
+        try {
+            $st = $conecta->prepare("SELECT idpessoa FROM pessoa where " . "login = ? and senha = ? ");
+            $st->bindParam(1, $login);
+            $st->bindParam(2, $senha);
+            if ($st->execute()) {
+
+                if ($st->rowCount() > 0) {
+                    echo $st->rowCount();
+                    $check =  true;
+                } else {
+                    $check =  false;
+                }
+            }
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        return $check;
+        $conn = null;
+    } else {
+
+
+        echo "Sem conexão com o banco";
+    }
 }
 }

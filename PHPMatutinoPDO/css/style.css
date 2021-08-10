@@ -1,0 +1,80 @@
+.botao {
+				
+    /*z-index: 0;*/
+    font-family: 'Burbank Big Cd Bk', sans serif;
+    background: #faec28;
+    clip-path: polygon(0% 20%, 100% 6%, 98% 100%, 2% 90%);
+    padding: 0.3875em 1em 0.125em;
+    display: inline-block;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+   
+    
+}
+.ativo{
+				
+    color:black;
+background-color: #faec28;
+}
+.botao span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.botao span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.botao:hover span {
+    padding-right: 25px;
+}
+
+.botao:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+@font-face {
+    font-family: 'Burbank Big Cd Bk';
+    src: url('/fontes/BurbankBigCondensed-Black.woff2') format('woff'),
+         url('/fontes/BurbankBigCondensed-Black.woff') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+.box{
+    color: white;
+    position: relative;
+    margin-top: 30%;
+    left: 20%;
+    transform: translate(-50%,-50%);
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 15px;
+    width: 20%;
+}
+

@@ -1,3 +1,11 @@
+
+<?php
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/controller/PessoaController.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
+include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,10 +16,39 @@
         <style>
             .espaco{
                 padding: 10px;
+
+                
             }
+            
         </style>
     </head>
     <body>
+    <?php
+        if (isset($_POST['enviarlo'])){
+            include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/daoPessoa.php';
+            
+            $login = trim($_POST['login']);
+            $senha = $_POST['senha'];
+            //$senha = md5($senhaSemCriptografia);
+            //echo "Senha:".$senha."<br>";
+            
+            $dp = new daoPessoa();
+           echo "Check:".$check = $dp->procurarsenha($login, $senha)."<br>";
+            if ($check == 1){
+                echo "Logado";
+                header("Location: cadastro.php");
+                
+            }else{
+                
+                echo "Senha ou login errados";
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                URL='login.php'\">";
+            }
+
+        }
+        
+        
+        ?>
         <div class="container">
             <div class="row espaco">
                 <div class=" col-md-6 offset-md-3"
@@ -42,7 +79,7 @@
                             </div>
                             <div class="row espaco" style="margin-top: 20px;">
                                 <div class="col-md-8 offset-md-2 ">
-                                    <input class="btn btn-success" type="submit" name="enviar" value="Enviar"> 
+                                    <input class="btn btn-success" type="submit" name="enviarlo" value="Enviar"> 
                                     <input class="btn btn-light" type="reset" value="Limpar">
                                 </div>    
                             </div>
@@ -54,5 +91,8 @@
         
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css"> 
     </body>
 </html>
