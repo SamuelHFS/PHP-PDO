@@ -33,7 +33,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
             //echo "Senha:".$senha."<br>";
             
             $dp = new daoPessoa();
-           echo "Check:".$check = $dp->procurarsenha($login, $senha)."<br>";
+          $check = $dp->procurarsenha($login, $senha)."<br>";
             if ($check == 1){
                 echo "Logado";
                 header("Location: cadastro.php");
@@ -41,7 +41,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
             }else{
                 
                 echo "Senha ou login errados";
-                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"50;
                 URL='login.php'\">";
             }
 
@@ -56,7 +56,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
                     <div class="card-header bg-primary border espaco
                          text-white text-center">Validação de Login</div>
                     <div class="card-body border">
-                        <form method="post" action="./controller/validaLogin.php">
+                        <form method="post" action="">
                             <div class="row espaco">
                                 <div class="col-md-8 offset-md-2 ">
                                     <label>Usuário</label>
@@ -74,7 +74,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
                             </div>
                             <div class="row">
                                 <div class="col-md-8 offset-md-2 ">
-                                    <input class="form-control" type="text" name="senha">
+                                    <input class="form-control" type="password" name="senha">
                                 </div>    
                             </div>
                             <div class="row espaco" style="margin-top: 20px;">
