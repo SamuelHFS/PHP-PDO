@@ -2,7 +2,7 @@
 <?php
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/controller/PessoaController.php';
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
-include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
+
 ?>
 
 
@@ -32,15 +32,16 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
             //$senha = md5($senhaSemCriptografia);
             //echo "Senha:".$senha."<br>";
             
-            $dp = new daoPessoa();
-          $check = $dp->procurarsenha($login, $senha)."<br>";
+            $dp= new daoPessoa();
+                                                //."<br>"
+          $check = $dp->procurarsenha($login, $senha);
             if ($check == 1){
                 echo "Logado";
                 header("Location: cadastro.php");
                 
             }else{
                 
-                echo "Senha ou login errados";
+                
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"50;
                 URL='login.php'\">";
             }
@@ -74,7 +75,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
                             </div>
                             <div class="row">
                                 <div class="col-md-8 offset-md-2 ">
-                                    <input class="form-control" type="password" name="senha">
+                                    <input class="form-control" type="text" name="senha">
                                 </div>    
                             </div>
                             <div class="row espaco" style="margin-top: 20px;">
