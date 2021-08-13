@@ -13,6 +13,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
         <title>Login</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/FormularioDeLogin.js"></script>
         <style>
             .espaco{
                 padding: 10px;
@@ -21,11 +22,15 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
             }
             
         </style>
+        
     </head>
     <body>
+   
     <?php
         if (isset($_POST['enviar'])){
             include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/daoPessoa.php';
+  
+           
             
             $login = trim($_POST['login']);
             $senha = $_POST['senha'];
@@ -34,15 +39,19 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
             
             $dp= new daoPessoa();
                                                 //."<br>"
+
+
+
           $check = $dp->procurarsenha($login, $senha);
             if ($check == 1){
-                echo "Logado";
+                //echo "Logado";
                 header("Location: cadastro.php");
                 
             }else{
                 
                 
-                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"50;
+                echo "Senha ou Login errado";
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                 URL='login.php'\">";
             }
 
@@ -71,13 +80,17 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
                             <div class="row espaco">
                                 <div class="col-md-8 offset-md-2 ">
                                     <label>Senha</label>
+                          
                                 </div>    
                             </div>
                             <div class="row">
                                 <div class="col-md-8 offset-md-2 ">
-                                    <input class="form-control" type="text" name="senha">
+                                    <input class="form-control" type="password" name="senha">
+                                    
+                 
                                 </div>    
                             </div>
+                      
                             <div class="row espaco" style="margin-top: 20px;">
                                 <div class="col-md-8 offset-md-2 ">
                                     <input class="btn btn-success" type="submit" name="enviar" value="Enviar"> 
@@ -93,6 +106,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/FormularioDeLogin.js"></script>
      
     </body>
 </html>

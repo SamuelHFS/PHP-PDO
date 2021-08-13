@@ -346,7 +346,7 @@ public function procurarsenha($login, $senha)
     $conn = new Conecta();
     $conecta = $conn->conectadb();
     $check = null;
-    echo $senha;
+
     if ($conecta) {
         try {
             $st = $conecta->prepare("SELECT idpessoa FROM pessoa where " . "login = ? and senha = ? ");
