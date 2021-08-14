@@ -1,7 +1,7 @@
 <?php
-
+ob_start();
 session_start();
 session_destroy();
 header("Location: index.php");
-setcookie("nr2", "");
 exit;
+ob_end_flush();

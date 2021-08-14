@@ -2,8 +2,17 @@
 <?php
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/controller/PessoaController.php';
 include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
+if (!isset($_SESSION)) {
+    session_start();
+}
+if(!isset($_SESSION['msg'])){
+    $_SESSION['msg'] = "";
+}
 
+$_SESSION['nr'] = "-1";
+$_SESSION['confereNr'] = "-2";
 ?>
+
 
 
 <!DOCTYPE html>
@@ -13,7 +22,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
         <title>Login</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="js/FormularioDeLogin.js"></script>
+      <!-- <script src="js/FormularioDeLogin.js"></script>-->
         <style>
             .espaco{
                 padding: 10px;
@@ -25,40 +34,6 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
         
     </head>
     <body>
-   
-    <?php
-        if (isset($_POST['enviar'])){
-            include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/dao/daoPessoa.php';
-  
-           
-            
-            $login = trim($_POST['login']);
-            $senha = $_POST['senha'];
-            //$senha = md5($senhaSemCriptografia);
-            //echo "Senha:".$senha."<br>";
-            
-            $dp= new daoPessoa();
-                                                //."<br>"
-
-
-
-          $check = $dp->procurarsenha($login, $senha);
-            if ($check == 1){
-                //echo "Logado";
-                header("Location: cadastro.php");
-                
-            }else{
-                
-                
-                echo "Senha ou Login errado";
-                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                URL='login.php'\">";
-            }
-
-        }
-        
-        
-        ?>
         <div class="container">
             <div class="row espaco">
                 <div class=" col-md-6 offset-md-3"
@@ -66,8 +41,15 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
                     <div class="card-header bg-primary border espaco
                          text-white text-center">Validação de Login</div>
                     <div class="card-body border">
-                        <form method="post" action="">
+                        <form method="post" action="./controller/ValidaLogin.php">
                             <div class="row espaco">
+                            <?php 
+                                if($_SESSION['msg'] != ""){
+                                    echo $_SESSION['msg'];
+                                    $_SESSION['msg'] = "";
+                                }
+                                
+                                ?><br>
                                 <div class="col-md-8 offset-md-2 ">
                                     <label>Usuário</label>
                                 </div>    
@@ -106,7 +88,7 @@ include_once 'C:/xampp/htdocs/PHPPDO/PHPMatutinoPDO/model/Pessoa.php';
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="js/FormularioDeLogin.js"></script>
+        <!--<script src="js/FormularioDeLogin.js"></script>-->
      
     </body>
 </html>

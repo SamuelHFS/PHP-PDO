@@ -1,4 +1,15 @@
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
+if((!isset($_SESSION['loginp']) || !isset($_SESSION['nomep'])) ||
+        !isset($_SESSION['perfilp']) || !isset($_SESSION['nr']) ||
+        ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    // Usuário não logado! Redireciona para a página de login 
+    header("Location: sessionDestroy.php");
+    exit;
+}
 include_once 'controller/PessoaController.php';
 include_once './model/pessoa.php';
 include_once './model/Endereco.php';

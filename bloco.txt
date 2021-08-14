@@ -72,3 +72,91 @@ class DaoLogi{
 }
 
 
+
+<div class="carousel-inner" >
+                  <div class="carousel-item active" data-bs-interval="2000" >
+                    <img src="img/acade.jpg" class="d-block w-100" alt="Treino de Peito"  >
+                  </div>
+                  <div class="carousel-caption text-start">
+                    <h1>Example headline.</h1>
+                    <p>Some representative placeholder content for the first slide of the carousel.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="img/academia.jpg" class="d-block w-100" alt="Treino de Bíceps">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="img/trein.jpg" class="d-block w-100" alt="Modelo Fitness">
+                  </div>
+                </div>
+
+                teste
+                testandp
+
+                testezin
+
+                testeando
+
+                teste
+
+
+                https://getbootstrap.com/docs/5.0/examples/checkout/
+
+
+                <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+          <form method="get" action="https://www.epicgames.com/fortnite/pt-BR/home">
+            <!--FECHAR O FORM!!!-->
+            <button class="botao" style="vertical-align:middle">
+              <span>teste</span>
+            </button>
+          </form>
+
+          create schema academiaProjetinFelas;
+use academiaProjetinFelas;
+
+create table cadastro (
+id int auto_increment primary key,
+nome varchar(100),
+email varchar(100),
+senha varchar(100),
+telefone varchar(11),
+cpf varchar(11),
+sexo varchar(10),
+cidade varchar(50),
+cep varchar(8),
+endereco varchar(50),
+nascimento date,
+estado varchar(50));
+
+INSERT INTO cadastro (nome, email, senha, telefone, cpf, sexo, cidade, cep, endereco, nascimento, estado)
+VALUES ('Samuel', 'samuel.jpgl@gmail.com', '12345678', '61998576131', '00000000000', 'masculino', 'sobradinho', '73092907', 'condo', '2001-12-10', 'distrito federal');
+
+SELECT * FROM cadastro;
+
+
+$altura = ;
+$peso = ;
+
+$imc = $peso / ($altura^2);
+
+
+
+
+
+$idade = 25;
+
+switch($idade){
+  case (idade < 18): echo "Menor de Idade";
+}
+
+ $idade = 25;
+
+switch($idade){
+    case ($idade < 18): echo "Menor de Idade"; break;
+    case ($idade > 18): echo "Maior de Idade"; break;
+    default: echo "Está no limbo";
+  }

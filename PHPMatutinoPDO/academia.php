@@ -1,4 +1,28 @@
+<?php
+ob_start();
+session_start();
 
+if((!isset($_SESSION['loginp']) || !isset($_SESSION['nomep'])) ||
+        !isset($_SESSION['perfilp']) || !isset($_SESSION['nr']) ||
+        ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    // Usuário não logado! Redireciona para a página de login 
+    header("Location: sessionDestroy.php");
+    exit;
+}
+include_once './controller/PessoaController.php';
+include_once './model/Pessoa.php';
+include_once './model/Endereco.php';
+include_once './model/Mensagem.php';
+$msg = new Mensagem();
+$en = new Endereco();
+$pe = new Pessoa();
+$pe->setFkendereco($en);
+$btEnviar = FALSE;
+$btAtualizar = FALSE;
+$btExcluir = FALSE;
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,7 +54,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.php">Login</a>
+              <a class="nav-link active" aria-current="page" href="index.php">Login</a>
             </li>
             
               <a class="nav-link" href="#">Vantagens</a>
