@@ -18,7 +18,7 @@ class DaoLogin {
                 if($st->execute()){
                     if($st->rowCount()>0){
                         while ($linha = $st->fetch(PDO::FETCH_OBJ)) {
-                            $pessoa->setIdpessoa($linha->idpessoa);
+                            $pessoa->setIdPessoa($linha->idpessoa);
                             $pessoa->setNome($linha->nome);
                             $pessoa->setLogin($linha->login);
                             $pessoa->setPerfil($linha->perfil);

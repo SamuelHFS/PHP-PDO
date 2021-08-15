@@ -17,40 +17,23 @@ class DaoFornecedor {
         if($conecta){
             
             $nomeFornecedor = $fornecedor->getNomeFornecedor();
-            $logradouro = $fornecedor->getEndereco->getLogradouro();
+            $logradouro = $fornecedor->getLogradouro();
            
-            $complemento = $fornecedor->getEndereco->getComplemento();
-            $bairro = $fornecedor->getEnedereco->getBairro();
-            $cidade = $fornecedor->getEndereco->getCidade();
-            $uf = $fornecedor->getEndereco->getUf();
-            $cep = $fornecedor->getEndereco->getCep();
-
+            $complemento = $fornecedor->getComplemento();
+            $bairro = $fornecedor->getBairro();
+            $cidade = $fornecedor->getCidade();
+            $uf = $fornecedor->getUf();
+            $cep = $fornecedor->getCep();
             $representante = $fornecedor->getRepresentante();
             $email = $fornecedor->getEmail();
             $telFixo = $fornecedor->getTelFixo();
             $telCel= $fornecedor->getTelCel();
             try {
-                //processo para pegar o idendereco da tabela endereco, conforme 
-                //o cep e o logradouro informado.
-                $stmt = $conecta->prepare("select idEndereco "
-                . "from endereco where cep = ? and "
-                . "logradouro = ? and complemento = ? limit 1");
-                $stmt->bindParam(1, $cep);
+                $stmt = $conecta->prepare("insert into fornecedor values "
+                        . "(null,?,?,?,?,?,?,?,?,?,?,?)");
+                $stmt->bindParam(1, $nomeFornecedor);
                 $stmt->bindParam(2, $logradouro);
-                $stmt->bindParam(3, $complemento);
-                if($stmt->execute()){
-                  if($stmt->rowCount()>0){
-                    $msg->setMsg("".$st->rowCount());
-                    while($linha = $stmt-fetch(PDO::FETCH_OBJ)){
-
-                    }
-                    //$msg->setMsg("$fkEnd");
-                  }else{
-                    $st2 = $conecta->prepare("insert into "
-                    . "endereco values (null, ?,?,?,?,?,?)");
-                    
-                }
-
+                
                 $stmt->bindParam(3, $complemento);
                 $stmt->bindParam(4, $bairro);
                 $stmt->bindParam(5, $cidade);
@@ -63,10 +46,7 @@ class DaoFornecedor {
                 $stmt->execute();
                 $msg->setMsg("<p style='color: green;'>"
                         . "Dados Cadastrados com sucesso</p>");
-            } 
-        
-        
-        }catch (Exception $ex) {
+            } catch (Exception $ex) {
                 $msg->setMsg($ex);
             }
         }else{
@@ -75,7 +55,6 @@ class DaoFornecedor {
         }
         $conn = null;
         return $msg;
-    
     }
     
     //método para atualizar dados da tabela fornecedor
@@ -239,7 +218,7 @@ class DaoFornecedor {
         }else{
             echo "<script>alert('Banco inoperante!')</script>";
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-			 URL='../PHPMatutino01/cadastroFornecedor.php'\">"; 
+			 URL='../PHPMatutinoPDO/cadastroFornecedor.php'\">"; 
         }
         return $fornecedor;
     }

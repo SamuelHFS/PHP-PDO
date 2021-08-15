@@ -2,6 +2,7 @@
 include_once 'controller/FornecedorController.php';
 include_once './model/Fornecedor.php';
 include_once './model/Mensagem.php';
+
 $msg = new Mensagem();
 $fo = new Fornecedor();
 $btEnviar = FALSE;

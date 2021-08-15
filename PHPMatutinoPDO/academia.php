@@ -39,10 +39,60 @@ $btExcluir = FALSE;
 
   
     <link href="carrousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script>
+            function mascara(t, mask){
+                var i = t.value.length;
+                var saida = mask.substring(1,0);
+                var texto = mask.substring(i)
+                
+                if (texto.substring(0,1) != saida){
+                    t.value += texto.substring(0,1);
+                }
+            }
+        </script>
 </head>
 
 <body>
+
+  
   <header>
+
+  <?php
+            include_once './nav.php';
+            echo navBar();
+        ?>
+        <div class="container">
+        <label id="cepErro" style="color:red;"></label>
+        <div class="container-fluid">
+            <div class="row" style="margin-top: 30px;">
+                <?php
+                if(isset($_SESSION['msg'])){
+                    if($_SESSION['msg']!=""){
+                        echo $_SESSION['msg'];
+                        echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                              URL='./principal.php'\">";
+                        $_SESSION['msg'] = "";
+                    }
+                }
+                
+                ?>
+                <p>Bem-vindo, <?php echo $_SESSION['nomep'];?>!</p>
+                <p><?php echo $_SESSION['idp'];?></p>
+                <p><?php echo $_SESSION['loginp'];?></p>
+                <p><?php echo $_SESSION['perfilp'];?></p>
+                <?php
+                    if($_SESSION['perfilp'] == "Cliente"){
+                        echo "<h3 style='color:blue';>
+                        Você é nosso melhor cliente</h3>";
+                    }else{
+                        echo "<h3 style='color:blue';>
+                        Você é nosso melhor Funcionário</h3>";
+                    }
+                ?>
+        </div>     
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark
             bg-dark m5">
       <div class="container-fluid">
