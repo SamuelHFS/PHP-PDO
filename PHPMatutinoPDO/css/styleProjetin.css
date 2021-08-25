@@ -30,6 +30,7 @@ body {
     background: rgb(255, 255, 255);
     padding: 25px 30px;
     border-radius: 1px;
+    /*margin-left:50%;*/
     /*border-color: yellowgreen;*/
 }
 .container .title{
@@ -38,7 +39,7 @@ font-weight: 500;
 position: relative;  
 }
 /*Classe para a imagem*/
-.title .imagem {
+.title {
     width: 10px;
     padding-right: 25px;
     padding-bottom: 10px;
@@ -126,6 +127,7 @@ form input[type="radio"]{
 form .botao{
     height: 45px;
     margin: 45px 0;
+    cursor: pointer;
 }
 form .botao input{
     height: 100%;
@@ -138,9 +140,11 @@ form .botao input{
     border-radius: 0px;
     letter-spacing: 1px;
     background: #2a2a2a;
+    cursor: pointer;
 }
 form .botao input:hover{
     background: #000000;
+    cursor: pointer;
 }
 
 .teste{
@@ -162,6 +166,7 @@ form .botao input:hover{
 @media (max-width: 584px){
     .container{ /*PARTE BRANCO DO FORMULÁRIO*/
         max-width: 100%;
+        /*margin-left:100% ;*/
 }
 form .detalhes-usuario .input-box{
     margin-bottom: 15px;
