@@ -37,13 +37,13 @@ font-size: 25px;
 font-weight: 500;  
 position: relative;  
 }
-/*Classe para a imagem*/
+/*Classe para a imagem
 .title .imagem {
     width: 10px;
     padding-right: 25px;
     padding-bottom: 10px;
    
-}
+}*/
 
 .title span
 {
