@@ -18,6 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     /*background: linear-gradient(135deg, #ffffff,#ff0157 );*/
+    /*background-image:url('./PHPMatutinoPDO/img/fundo-login.jpg');*/
     background-image:url('/PHPMatutinoPDO/img/fundo-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
