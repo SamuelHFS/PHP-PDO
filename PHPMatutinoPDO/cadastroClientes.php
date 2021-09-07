@@ -25,7 +25,7 @@ $msg = new Mensagem();
         <div class="title" ><span><b>C</b></span>adastro</div>
         
         <?php
-        if(isset($_POST['cadastrarclientes'])){
+        if(isset($_POST['cadastrar'])){
             $login = trim($_POST['login']);
             if ($login != ""){
             
@@ -35,9 +35,9 @@ $msg = new Mensagem();
             $email = $_POST['email'];
             $telefone = $_POST['telefone'];
 
-            $cc = new PessoaController();
-            unset($_POST['cadastarclientes']);
-            $msg = $pc->inserirClientes(
+            $cc = new ClientesController();
+            unset($_POST['cadastar']);
+            $msg = $cc->inserirClientes(
                 $login,
                 $senha,
                 $nome,
@@ -66,40 +66,41 @@ $msg = new Mensagem();
                     <?php
                     }
                     ?>
-                    <spam class="detalhes">Nome Completo</spam>
-                    <input type="text" placeholder="Digite seu nome" name="nome" required value="<?php echo $ce->getNome(); ?>">
+                    <label >Nome Completo</label>
+                    <input type="text" placeholder="Digite seu nome" name="nome" value="<?php echo $ce->getNome(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Login</spam>
-                    <input type="text" placeholder="Digite seu login" name="login" required value="<?php echo $ce->getLogin(); ?>">
+                    <label class="detalhes">Login</label>
+                    <input type="text" placeholder="Digite seu login" name="login" value="<?php echo $ce->getLogin(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Email</spam>
-                    <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
+                    <label class="detalhes">Email</label>
+                    <input type="email" placeholder="Digite seu email" name="email" value="<?php echo $ce->getEmail(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Telefone</spam>
-                    <input type="text" placeholder="Digite seu telefone" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                    <label class="detalhes">Telefone</label>
+                    <input type="text" placeholder="Digite seu telefone" name="telefone" value="<?php echo $ce->getTelefone(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Senha</spam>
-                    <input type="password" placeholder="Digite sua senha" name="senha" required value="<?php echo $ce->getSenha(); ?>">
+                    <label class="detalhes">Senha</label>
+                    <input type="password" placeholder="Digite sua senha" name="senha" value="<?php echo $ce->getSenha(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Confirmar Senha</spam>
-                    <input type="text" placeholder="Confirme sua senha" name="senha2" required>
+                    <label class="detalhes">Confirmar Senha</label>
+                    <input type="password" placeholder="Confirme sua senha" name="senha2" >
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Sexo</spam>
-                    <input type="text" placeholder="Confirme seu sexo" name="sexo" required value="<?php echo $ce->getSexo(); ?>">
+                    <label class="detalhes">Sexo</label>
+                    <input type="text" placeholder="Confirme seu sexo" name="sexo"  value="<?php echo $ce->getSexo(); ?>">
                 </div>
             </div>
             
-            <button class="btn efeito-btn" name="cadastarclientes" value="Enviar">Cadastrar</button>
+            <button type="submit" class="btn efeito-btn" name="cadastarclientes">Cadastrar</button>
         
         </form>
-        
+    
     </div>
+    
 
     <a class="whatsapp-link"
     href="https://web.whatsapp.com/send?phone=559891355162"
