@@ -66,36 +66,48 @@ $msg = new Mensagem();
                     <?php
                     }
                     ?>
-                    <label >Nome Completo</label>
+                    <spam >Nome Completo</spam>
                     <input type="text" placeholder="Digite seu nome" name="nome" value="<?php echo $ce->getNome(); ?>">
                 </div>
                 <div class="input-box">
-                    <label class="detalhes">Login</label>
+                    <spam class="detalhes">Login</spam>
                     <input type="text" placeholder="Digite seu login" name="login" value="<?php echo $ce->getLogin(); ?>">
                 </div>
                 <div class="input-box">
-                    <label class="detalhes">Email</label>
+                    <spam class="detalhes">Email</spam>
                     <input type="email" placeholder="Digite seu email" name="email" value="<?php echo $ce->getEmail(); ?>">
                 </div>
                 <div class="input-box">
-                    <label class="detalhes">Telefone</label>
+                    <spam class="detalhes">Telefone</spam>
                     <input type="text" placeholder="Digite seu telefone" name="telefone" value="<?php echo $ce->getTelefone(); ?>">
                 </div>
                 <div class="input-box">
-                    <label class="detalhes">Senha</label>
+                    <spam class="detalhes">Senha</spam>
                     <input type="password" placeholder="Digite sua senha" name="senha" value="<?php echo $ce->getSenha(); ?>">
                 </div>
                 <div class="input-box">
-                    <label class="detalhes">Confirmar Senha</label>
+                    <spam class="detalhes">Confirmar Senha</spam>
                     <input type="password" placeholder="Confirme sua senha" name="senha2" >
                 </div>
-                <div class="input-box">
-                    <label class="detalhes">Sexo</label>
-                    <input type="text" placeholder="Confirme seu sexo" name="sexo"  value="<?php echo $ce->getSexo(); ?>">
-                </div>
             </div>
+            <div class="genero">
+                <input type="radio" name="sexo" id="ponto-1" value="<?php echo $ce->getSexo() ;?>">
+                <input type="radio" name="sexo" id="ponto-2" value="<?php echo $ce->getSexo();?>">
+                <span class="seu-genero">Gênero</span>
+                <div class="categoria">
+                    <label for="ponto-1" >
+                        <span class="ponto um"></span>
+                        <span class="generoMas" >Masculino</span>
+                    </label>
+                    <label for="ponto-2" >
+                        <span class="ponto dois" ></span>
+                        <span class="generoMas" >Feminino</span>
+                    </label>
+                </div>
+            </div> 
             
-            <button type="submit" class="btn efeito-btn" name="cadastarclientes">Cadastrar</button>
+            
+            <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
         
         </form>
     

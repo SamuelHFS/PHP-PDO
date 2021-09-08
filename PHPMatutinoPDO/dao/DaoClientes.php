@@ -21,7 +21,7 @@ class DaoClientes
             $telefone = $clientes->getTelefone();
             try {
                 $stmt = $conecta->prepare("insert into clientes values "
-                    . "(null,?,?,?,?,?,?)");
+                    . "(null,?,md5(?),?,?,?,?)");
                 $stmt->bindParam(1, $login);
                 $stmt->bindParam(2, $senha);
                 $stmt->bindParam(3, $nome);
@@ -42,5 +42,5 @@ class DaoClientes
         return $msg;
     }
 }
-
+ 
            
