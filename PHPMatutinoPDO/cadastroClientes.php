@@ -68,38 +68,38 @@ $msg = new Mensagem();
                     <?php
                     }
                     ?>
-                    <spam >Nome Completo</spam>
-                    <input type="text" placeholder="Digite seu nome" name="nome" value="<?php echo $ce->getNome(); ?>">
+                    <span >Nome Completo</span>
+                    <input type="text" placeholder="Digite seu nome" name="nome" required value="<?php echo $ce->getNome(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Login</spam>
-                    <input type="text" placeholder="Digite seu login" name="login" value="<?php echo $ce->getLogin(); ?>">
+                    <span class="detalhes">Login</span>
+                    <input type="text" placeholder="Digite seu login" name="login" required value="<?php echo $ce->getLogin(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Email</spam>
-                    <input type="email" placeholder="Digite seu email" name="email" value="<?php echo $ce->getEmail(); ?>">
+                    <span class="detalhes">Email</span>
+                    <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Telefone</spam>
-                    <input type="text" placeholder="Digite seu telefone" name="telefone" value="<?php echo $ce->getTelefone(); ?>">
+                    <span class="detalhes">Telefone</span>
+                    <input type="text" placeholder="Digite seu telefone" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Senha</spam>
-                    <input type="password" placeholder="Digite sua senha" name="senha" value="<?php echo $ce->getSenha(); ?>">
+                    <span class="detalhes">Senha</span>
+                    <input type="password" placeholder="Digite sua senha" name="senha"  required value="<?php echo $ce->getSenha(); ?>">
                 </div>
                 <div class="input-box">
-                    <spam class="detalhes">Confirmar Senha</spam>
-                    <input type="password" placeholder="Confirme sua senha" name="senha2" >
+                    <span class="detalhes">Confirmar Senha</span>
+                    <input type="password" placeholder="Confirme sua senha" name="senha2" required >
                 </div>
             </div>
             <div class="genero">
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" >
-                <input type="radio" name="sexo" id="ponto-2" value="Feminino">
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>">
+                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>">
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
-                    <label for="ponto-1" name="sexo" value="Masculino" >
+                    <label for="ponto-1" >
                         <span class="ponto um"></span>
-                        <spam class="generoMas" value="Masculino">Masculino</span>
+                        <span class="generoMas">Masculino</span>
                     </label>
                     <label for="ponto-2" name="sexo" value="Feminino">
                         <span class="ponto dois" ></span>
@@ -107,13 +107,8 @@ $msg = new Mensagem();
                     </label>
                 </div>
             </div> 
-
-            
-            
             <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
-        
         </form>
-    
     </div>
     
 
@@ -124,5 +119,4 @@ $msg = new Mensagem();
 </a>
 
 </body>
-
 </html>

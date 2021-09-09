@@ -19,7 +19,7 @@ body {
     align-items: center;
     /*background: linear-gradient(135deg, #ffffff,#ff0157 );*/
     /*background-image:url('./PHPMatutinoPDO/img/fundo-login.jpg');*/
-    background-image:url('./PHPMatutinoPDO/img/fundo.jpg');
+    background-image:url('../img/fundo-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -149,6 +149,60 @@ form .genero .categoria{
 form input[type="radio"]{
     display: none;
 }
+/*.wrapper {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .form-group {
+    display:inherit;
+    width: 80%;
+    margin: 10px 0;
+    justify-content: space-between;
+  }
+  
+  .form-group label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .radioteste{
+    cursor: pointer;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 3px solid turquoise;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+  }
+  
+  
+  
+  .radioteste:before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: turquoise;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 600ms ease-in-out;
+    position: absolute;
+  }
+  
+  
+  
+  .radioteste:checked:before {
+    opacity: 1;
+  }
+  
+  .radioteste:focus{
+    box-shadow: 0 0 5px turquoise;
+  }*/
 /*CÓDIGO BOTAO ANTIGO
 form .botao{
     height: 45px;
