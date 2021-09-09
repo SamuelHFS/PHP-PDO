@@ -14,6 +14,8 @@ $msg = new Mensagem();
     <link rel="stylesheet" href="./css/styleProjetin.css">
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -91,20 +93,21 @@ $msg = new Mensagem();
                 </div>
             </div>
             <div class="genero">
-                <input type="radio" name="sexo" id="ponto-1" value="<?php echo $ce->getSexo() ;?>">
-                <input type="radio" name="sexo" id="ponto-2" value="<?php echo $ce->getSexo();?>">
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" >
+                <input type="radio" name="sexo" id="ponto-2" value="Feminino">
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
-                    <label for="ponto-1" >
+                    <label for="ponto-1" name="sexo" value="Masculino" >
                         <span class="ponto um"></span>
-                        <span class="generoMas" >Masculino</span>
+                        <spam class="generoMas" value="Masculino">Masculino</span>
                     </label>
-                    <label for="ponto-2" >
+                    <label for="ponto-2" name="sexo" value="Feminino">
                         <span class="ponto dois" ></span>
-                        <span class="generoMas" >Feminino</span>
+                        <span class="generoMas" value="Feminino" >Feminino</span>
                     </label>
                 </div>
             </div> 
+
             
             
             <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
@@ -119,6 +122,7 @@ $msg = new Mensagem();
     target="_blank">
     <i class="fa fa-whatsapp"></i>
 </a>
+
 </body>
 
 </html>
