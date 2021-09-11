@@ -3,7 +3,7 @@
 class Clientes {
     
     private $id;
-    private $login;
+ 
     private $senha;
     private $nome;
     private $sexo;
@@ -23,17 +23,7 @@ class Clientes {
         return $this;
     }
 
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
+    
 
     
     public function getSenha()

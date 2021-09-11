@@ -65,7 +65,7 @@ position: relative;
     bottom: 0;
     height: 3px;
     width: 3%;
-    background: linear-gradient(135deg,#ffffff ,#000000);
+    background: linear-gradient(135deg,#ffffff ,#ff0000);
 }
 .container .testte{
     font-size: 25px;
@@ -120,15 +120,18 @@ form .detalhes-usuario .input-box{
 form .genero  .seu-genero{
     font-size: 20px;
     font-weight: 500;
+   padding: -90px;
+   position: absolute;
+ 
 }
 form .genero .categoria{
-    display:inherit;
-    width: 80%;
-    margin: 10px 0;
+    display:flex;
+    width:  80%;
+    margin: 23px 0;
     justify-content: space-between;
 }
 .genero .categoria label{
-    display: flex;
+    display:flex;
     align-items: center;
 }
 .genero .categoria .ponto{
@@ -136,11 +139,17 @@ form .genero .categoria{
     width: 18px;
     background: #d9d9d9;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 45px;
     border: 5px solid transparent;
     transition: all 0.3s ease;
 
 }
+/*.generoMas{
+   margin-right: 30px;
+   margin-bottom: 70px;
+   position: absolute;
+   justify-content: space-between;
+}*/
 #ponto-1:checked ~ .categoria label .um,
 #ponto-2:checked ~ .categoria label .dois{
     border-color: #d9d9d9;

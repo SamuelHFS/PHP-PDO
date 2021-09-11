@@ -2,6 +2,7 @@
 include_once './controller/ClientesController.php';
 include_once './model/Clientes.php';
 include_once './model/Mensagem.php';
+
 $ce = new Clientes();
 $msg = new Mensagem();
 ?>
@@ -16,6 +17,7 @@ $msg = new Mensagem();
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     
     
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -27,20 +29,31 @@ $msg = new Mensagem();
         <div class="title" ><span><b>C</b></span>adastro</div>
         
         <?php
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
         if(isset($_POST['cadastrar'])){
-            $login = trim($_POST['login']);
-            if ($login != ""){
+            $senha = trim($_POST['senha']);
+            if ($senha != ""){
             
-            $senha = $_POST['senha'];
             $nome = $_POST['nome'];
             $sexo = $_POST['sexo'];
             $email = $_POST['email'];
             $telefone = $_POST['telefone'];
 
+            /*$query = $conecta->prepare("SELECT * FROM clientes WHERE email='$email'");
+        $query->execute([$email]);
+        $result = $query->rowCount();
+        if($result >0){
+            $msg->setMsg("<p style='color: red;'>"
+                . "Email já existe.</p>"); }*/
+        }
+
+
             $cc = new ClientesController();
             unset($_POST['cadastar']);
             $msg = $cc->inserirClientes(
-                $login,
+               
                 $senha,
                 $nome,
                 $sexo,
@@ -51,7 +64,7 @@ $msg = new Mensagem();
                             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                 URL='cadastroClientes.php'\">";
             }
-        }
+        
         ?>
 
         <form method="post" action="">
@@ -71,10 +84,7 @@ $msg = new Mensagem();
                     <span >Nome Completo</span>
                     <input type="text" placeholder="Digite seu nome" name="nome" required value="<?php echo $ce->getNome(); ?>">
                 </div>
-                <div class="input-box">
-                    <span class="detalhes">Login</span>
-                    <input type="text" placeholder="Digite seu login" name="login" required value="<?php echo $ce->getLogin(); ?>">
-                </div>
+               
                 <div class="input-box">
                     <span class="detalhes">Email</span>
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
@@ -91,7 +101,7 @@ $msg = new Mensagem();
                     <span class="detalhes">Confirmar Senha</span>
                     <input type="password" placeholder="Confirme sua senha" name="senha2" required >
                 </div>
-            </div>
+            
             <div class="genero">
                 <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>">
                 <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>">
@@ -106,7 +116,7 @@ $msg = new Mensagem();
                         <span class="generoMas" value="Feminino" >Feminino</span>
                     </label>
                 </div>
-            </div> 
+            </div> </div>
             <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
         </form>
     </div>

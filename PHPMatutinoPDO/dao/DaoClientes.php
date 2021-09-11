@@ -12,8 +12,9 @@ class DaoClientes
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
+       
         if ($conecta) {
-            $login = $clientes->getLogin();
+            
             $senha = $clientes->getSenha();
             $nome = $clientes->getNome();
             $sexo = $clientes->getSexo();
@@ -21,13 +22,13 @@ class DaoClientes
             $telefone = $clientes->getTelefone();
             try {
                 $stmt = $conecta->prepare("insert into clientes values "
-                    . "(null,?,md5(?),?,?,?,?)");
-                $stmt->bindParam(1, $login);
-                $stmt->bindParam(2, $senha);
-                $stmt->bindParam(3, $nome);
-                $stmt->bindParam(4, $sexo);
-                $stmt->bindParam(5, $email);
-                $stmt->bindParam(6, $telefone);
+                    . "(null,md5(?),?,?,?,?)");
+                
+                $stmt->bindParam(1, $senha);
+                $stmt->bindParam(2, $nome);
+                $stmt->bindParam(3, $sexo);
+                $stmt->bindParam(4, $email);
+                $stmt->bindParam(5, $telefone);
                 $stmt->execute();
                 $msg->setMsg("<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>");
