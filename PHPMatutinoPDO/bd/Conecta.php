@@ -14,3 +14,4 @@ class Conecta {
         return $pdo;
     }
 }
+

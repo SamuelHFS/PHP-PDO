@@ -2,7 +2,7 @@
 include_once './controller/ClientesController.php';
 include_once './model/Clientes.php';
 include_once './model/Mensagem.php';
-
+include_once './bd/Conecta.php';
 $ce = new Clientes();
 $msg = new Mensagem();
 ?>
@@ -27,6 +27,7 @@ $msg = new Mensagem();
     <div class="container">
         
         <div class="title" ><span><b>C</b></span>adastro</div>
+
         
         <?php
         $conn = new Conecta();
@@ -41,17 +42,12 @@ $msg = new Mensagem();
             $email = $_POST['email'];
             $telefone = $_POST['telefone'];
 
-            /*$query = $conecta->prepare("SELECT * FROM clientes WHERE email='$email'");
-        $query->execute([$email]);
-        $result = $query->rowCount();
-        if($result >0){
-            $msg->setMsg("<p style='color: red;'>"
-                . "Email já existe.</p>"); }*/
+           
         }
 
 
             $cc = new ClientesController();
-            unset($_POST['cadastar']);
+            unset($_POST['cadastrar']);
             $msg = $cc->inserirClientes(
                
                 $senha,
@@ -64,6 +60,7 @@ $msg = new Mensagem();
                             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                 URL='cadastroClientes.php'\">";
             }
+        
         
         ?>
 
