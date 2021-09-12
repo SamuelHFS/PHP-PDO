@@ -18,7 +18,6 @@ body {
     justify-content: center;
     align-items: center;
     /*background: linear-gradient(135deg, #ffffff,#ff0157 );*/
-    /*background-image:url('./PHPMatutinoPDO/img/fundo-login.jpg');*/
     background-image:url('../img/fundo-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -58,6 +57,14 @@ position: relative;
     left: 50%;
     
 }
+
+span1{
+    position: absolute;
+    right:15px;
+    transform: translate(0, -50%);
+    top: 50%;
+    cursor: pointer:
+    }
 .container .title::before{
     content: '';
     position: absolute;
@@ -65,7 +72,7 @@ position: relative;
     bottom: 0;
     height: 3px;
     width: 3%;
-    background: linear-gradient(135deg,#ffffff ,#ff0000);
+    background: linear-gradient(135deg,#ffffff ,#000000);
 }
 .container .testte{
     font-size: 25px;
@@ -117,21 +124,37 @@ form .detalhes-usuario .input-box{
 .detalhes-usuario .input-box input:valid{
     border-color: #000000;
 }
+
+/*---------------------------------------------------------------*/
+/*---------------------------------------------------------------*/
+/*---------------------------------------------------------------*/
+/*---------------------------------------------------------------*/
+
+form .detalhes-usuario .input-boxx{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+.detalhes-usuario .input-boxx .detalhess{
+    display: flex;
+    font-weight: 500;
+    padding-top: 30px;
+    
+}
+
+
+
 form .genero  .seu-genero{
     font-size: 20px;
     font-weight: 500;
-   padding: -90px;
-   position: absolute;
- 
 }
 form .genero .categoria{
-    display:flex;
-    width:  80%;
-    margin: 23px 0;
+    display:inherit;
+    width: 80%;
+    margin: 10px 0;
     justify-content: space-between;
 }
 .genero .categoria label{
-    display:flex;
+    display: flex;
     align-items: center;
 }
 .genero .categoria .ponto{
@@ -139,17 +162,11 @@ form .genero .categoria{
     width: 18px;
     background: #d9d9d9;
     border-radius: 50%;
-    margin-right: 45px;
+    margin-right: 10px;
     border: 5px solid transparent;
     transition: all 0.3s ease;
 
 }
-/*.generoMas{
-   margin-right: 30px;
-   margin-bottom: 70px;
-   position: absolute;
-   justify-content: space-between;
-}*/
 #ponto-1:checked ~ .categoria label .um,
 #ponto-2:checked ~ .categoria label .dois{
     border-color: #d9d9d9;
@@ -158,60 +175,6 @@ form .genero .categoria{
 form input[type="radio"]{
     display: none;
 }
-/*.wrapper {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  
-  .form-group {
-    display:inherit;
-    width: 80%;
-    margin: 10px 0;
-    justify-content: space-between;
-  }
-  
-  .form-group label {
-    display: flex;
-    align-items: center;
-  }
-  
-  .radioteste{
-    cursor: pointer;
-    appearance: none;
-    width: 30px;
-    height: 30px;
-    border: 3px solid turquoise;
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-  }
-  
-  
-  
-  .radioteste:before {
-    content: '';
-    width: 15px;
-    height: 15px;
-    background: turquoise;
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 600ms ease-in-out;
-    position: absolute;
-  }
-  
-  
-  
-  .radioteste:checked:before {
-    opacity: 1;
-  }
-  
-  .radioteste:focus{
-    box-shadow: 0 0 5px turquoise;
-  }*/
 /*CÓDIGO BOTAO ANTIGO
 form .botao{
     height: 45px;
@@ -309,6 +272,10 @@ form .detalhes-usuario .input-box{
     margin-bottom: 15px;
     width:100%;
 }
+form .detalhes-usuario .input-boxx{
+    margin-bottom: 20px;
+    width:100%;
+}
 form .genero .categoria{
     width: 100%;
 }
@@ -318,7 +285,6 @@ form .genero .categoria{
    
     bottom: 82%;
    padding: 10px;
-
 }*/
 form .btn{
     margin-bottom: 70px;
@@ -364,11 +330,9 @@ form .btn{
     width: 0;
 }
 .testandoHome{
-
     position: absolute;
     
 }
-
 }*/
 
 

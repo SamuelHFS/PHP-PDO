@@ -12,18 +12,26 @@ class DaoClientes
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
-       
+
         if ($conecta) {
-            
+
+
             $senha = $clientes->getSenha();
             $nome = $clientes->getNome();
             $sexo = $clientes->getSexo();
             $email = $clientes->getEmail();
             $telefone = $clientes->getTelefone();
             try {
-                $stmt = $conecta->prepare("insert into clientes values "
+                $st = $conecta->prepare("SELECT * FROM clientes where email = ?");
+                $st->execute([$email]);
+                $result = $st->rowCount();
+                if($result >0){
+                    $msg->setMsg("<p style='color: red;'>"
+                    . "Email já cadastrado, digite outro email ou faça login</p>");
+                }else{
+                    $stmt = $conecta->prepare("insert into clientes values "
                     . "(null,md5(?),?,?,?,?)");
-                
+
                 $stmt->bindParam(1, $senha);
                 $stmt->bindParam(2, $nome);
                 $stmt->bindParam(3, $sexo);
@@ -32,6 +40,8 @@ class DaoClientes
                 $stmt->execute();
                 $msg->setMsg("<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>");
+                }
+                
             } catch (Exception $ex) {
                 $msg->setMsg($ex);
             }
@@ -42,6 +52,6 @@ class DaoClientes
         $conn = null;
         return $msg;
     }
+
+   
 }
- 
-           
