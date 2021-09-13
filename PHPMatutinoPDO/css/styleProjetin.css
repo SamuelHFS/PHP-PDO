@@ -9,15 +9,11 @@
     border: none;
 }
 
- 
-
-
 body {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    /*background: linear-gradient(135deg, #ffffff,#ff0157 );*/
     background-image:url('../img/fundo-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -50,18 +46,6 @@ position: relative;
     
 }
 
-#olho{
-    position: absolute;
-    right:330px;
-    transform: translate(0, -50%);
-    top: 100%;
-    cursor: pointer;
-    }
-    .fa{
-        font-size: 20px;
-        color: #7a797e;
-        }
-        
 .container .title::before{
     content: '';
     position: absolute;
@@ -71,8 +55,6 @@ position: relative;
     width: 3%;
     background: linear-gradient(135deg,#ffffff ,#000000);
 }
-
-
 
 .container form .detalhes-usuario{
     display: flex;
@@ -106,62 +88,16 @@ form .detalhes-usuario .input-box{
     border-color: #000000;
 }
 
-/*---------------------------------------------------------------*/
-/*---------------------------------------------------------------*/
-/*---------------------------------------------------------------*/
-/*---------------------------------------------------------------*/
-
-form .detalhes-usuario .input-boxx{
-    margin-bottom: 15px;
-    width: calc(100% / 2 - 20px);
-}
-.detalhes-usuario .input-boxx .detalhess{
-    display: flex;
-    font-weight: 500;
-    padding-top: 30px;
-    
-}
-/*
-.container form .detalhes-usuario{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px 0 12px 0;
-}
-form .detalhes-usuario .input-boxi{
-    margin-bottom: 15px;
-    width: calc(100% / 2 - 20px);
-}
-.detalhes-usuario .input-boxi .detalhies{
-    display: block;
-    font-weight: 500;
-    margin-bottom: 5px;
-    
-}
-.detalhes-usuario .input-boxi .detalhies::before #olho{
+form i{
     position: absolute;
-    right:330px;
-    transform: translate(0, -50%);
-    top: 100%;
-    cursor: pointer;
-    
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    margin: 15px 0 0 -30px;
+}              
+i.fa-eye{
+    margin-top: 16px;
 }
-.detalhes-usuario .input-boxi input{
-    height: 45px;
-    width: 100%;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding-left: 15px;
-    font-size: 16px;
-    border-bottom-width: 2px;
-    transition: all 0.3s ease;
-}
-.detalhes-usuario .input-boxi input:focus,
-.detalhes-usuario .input-boxi input:valid{
-    border-color: #000000;
-}
-*/
+
 
 form .genero  .seu-genero{
     font-size: 20px;
@@ -194,42 +130,6 @@ form .genero .categoria{
 }
 form input[type="radio"]{
     display: none;
-}
-/*CÓDIGO BOTAO ANTIGO
-form .botao{
-    height: 45px;
-    margin: 45px 0;
-    cursor: pointer;
-}
-form .botao input{
-    height: 100%;
-    width: 100%;
-    outline: none;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 0px;
-    letter-spacing: 1px;
-    background: #2a2a2a;
-    cursor: pointer;
-}
-form .botao input:hover{
-    background: #000000;
-    cursor: pointer;
-}*/
-
-.teste{
-    color: #ffffff;
-    /*padding-bottom: 100px;*/
-    font-size: 25px;
-    float: left;
-}
-.testandoHome{
-    font-size: 25px;
-    position: center;
-   
-    
 }
 
 
@@ -280,10 +180,8 @@ form .botao input:hover{
 }
     
 
-
-
 @media (max-width: 584px){
-    .container{ /*PARTE BRANCO DO FORMULÁRIO*/
+    .container { /*PARTE BRANCO DO FORMULÁRIO*/
         max-width: 100%;
         position: fixed;
         /*margin-left:100% ;*/
@@ -292,35 +190,12 @@ form .detalhes-usuario .input-box{
     margin-bottom: 15px;
     width:100%;
 }
-form .detalhes-usuario .input-boxx{
-    margin-bottom: 20px;
-    width:100%;
-}
-form .detalhes-usuario .input-boxi{
-    margin-bottom: 20px;
-    width:100%;
-}
+
 
 form .genero .categoria{
     width: 100%;
 }
-form .container #olho{
-   
-    position: fixed;
-    right:50px;
-    transform: translate(0, -50%);
-    top: 60%;
-    cursor: pointer;
-   
-    overflow-y: initial;
-}
-/*.imagem{
-    width: 100px;
-   left:40%;
-   
-    bottom: 82%;
-   padding: 10px;
-}*/
+
 form .btn{
     margin-bottom: 70px;
 }
@@ -328,48 +203,22 @@ form .btn{
     max-height: 300px;
     overflow-y: scroll;
 }
-.detalhes-usuario::-webkit-scrollbar{
-    width: 0;
-}
-.testandoHome{
 
+form i{
     position: absolute;
-    
-}
-
-}
-
-
-
-/*@media (max-width: 730px){
-    .container{ PARTE BRANCO DO FORMULÁRIO
-        max-width: 100%;
-        position: fixed;
-        margin-left:100% ;
-}
-form .detalhes-usuario .input-box{
-    margin-bottom: 15px;
-    width:100%;
-}
-form .genero .categoria{
-    width: 100%;
-}
-form .btn{
-    margin-bottom: 100px;
-}
-.container form .detalhes-usuario{
-    max-height: 300px;
-    overflow-y: scroll;
+    font-size: 25px;
+    color: rgb(255, 0, 0);
+    margin: 15px 0 0 -30px; 
+     overflow-y: auto;
+}              
+i.fa-eye{
+    margin-top: 16px;
 }
 .detalhes-usuario::-webkit-scrollbar{
     width: 0;
 }
-.testandoHome{
-    position: absolute;
-    
-}
-}*/
 
+}
 
 .whatsapp-link
 {

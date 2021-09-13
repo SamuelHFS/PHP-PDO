@@ -27,7 +27,7 @@ class DaoClientes
                 $result = $st->rowCount();
                 if($result >0){
                     $msg->setMsg("<p style='color: red;'>"
-                    . "Email já cadastrado, digite outro email ou faça login</p>");
+                    . "Email já cadastrado!</p>");
                 }else{
                     $stmt = $conecta->prepare("insert into clientes values "
                     . "(null,md5(?),?,?,?,?)");

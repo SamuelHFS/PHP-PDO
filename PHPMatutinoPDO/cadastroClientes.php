@@ -97,14 +97,10 @@ $msg = new Mensagem();
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
-                    
-                </div>
-               <span >
                     <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
-                <span>
-                <div class="input-boxx">
-                    <span class="detalhess">Atenção: Informe email e telefone válidos</span>
                 </div>
+               
+                
 
             </div> 
             
@@ -136,7 +132,7 @@ $msg = new Mensagem();
                     "senha").
                 setAttribute("type", "password");
                 document.getElementById(
-                    "olho").style.color = '#7a797e';
+                    "olho").style.color = '#000000';
 state = false;
             } else {
                 document.getElementById(
