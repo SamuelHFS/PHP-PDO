@@ -204,8 +204,8 @@ form .btn{
     overflow-y: scroll;
 }
 
-form i{
-    position: absolute;
+form .input-box i{
+    position: relative;
     font-size: 25px;
     color: rgb(255, 0, 0);
     margin: 15px 0 0 -30px; 
