@@ -88,13 +88,39 @@ form .detalhes-usuario .input-box{
     border-color: #000000;
 }
 
-form i{
-    position: absolute;
-    font-size: 25px;
-    color: rgb(0, 0, 0);
-    margin: 15px 0 0 -30px;
+
+
+/*
+
+
+
+
+
+
+
+
+
+*/
+
+form   .p-viewer2{
+/*
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    color: rgb(250, 0, 0);
+    margin: 30px 0 0 -70px;
+ cursor:pointer;
+*/
+ 
+ right: 10px;
+ position: relative;
+ z-index: 1;
+ font-size: 15px;
+ color: #888;
+ margin: 23px 0 0 -55px;
+cursor:pointer;
 }              
-i.fa-eye{
+.fa-eye{
     margin-top: 16px;
 }
 
@@ -192,6 +218,27 @@ form .detalhes-usuario .input-box{
 }
 
 
+.p-viewer2{
+    /*
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    color: red;
+    */
+    right: 10px;
+    position: relative;
+    
+    z-index: 1;
+    font-size: 15px;
+    color:#888;
+    margin: 23px 0 0 -30px;
+ cursor:pointer;
+  }
+.fa-eye{
+    margin-top: 16px;
+}
 form .genero .categoria{
     width: 100%;
 }
@@ -203,17 +250,18 @@ form .btn{
     max-height: 300px;
     overflow-y: scroll;
 }
-
+/*
 form .input-box i{
-    position: relative;
+    position: absolute;
     font-size: 25px;
     color: rgb(255, 0, 0);
     margin: 15px 0 0 -30px; 
      overflow-y: auto;
+  
 }              
 i.fa-eye{
     margin-top: 16px;
-}
+}*/
 .detalhes-usuario::-webkit-scrollbar{
     width: 0;
 }

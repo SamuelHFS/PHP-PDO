@@ -57,7 +57,7 @@ $msg = new Mensagem();
                 $telefone
             );
             echo $msg->getMsg();
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"5;
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                 URL='cadastroClientes.php'\">";
         }
 
@@ -97,10 +97,12 @@ $msg = new Mensagem();
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
-                    <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
+                   
                 </div>
                
-                
+                 <span class="p-viewer2">
+                    <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
+                    </span>
 
             </div> 
             
@@ -132,14 +134,14 @@ $msg = new Mensagem();
                     "senha").
                 setAttribute("type", "password");
                 document.getElementById(
-                    "olho").style.color = '#000000';
+                    "olho").style.color = '#888';
 state = false;
             } else {
                 document.getElementById(
                     "senha").
                 setAttribute("type", "text");
                 document.getElementById(
-                    "olho").style.color = '#5887ef';
+                    "olho").style.color ='#000000';
                 state = true;
             }
         }
