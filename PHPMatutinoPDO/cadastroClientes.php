@@ -15,7 +15,7 @@ $msg = new Mensagem();
     <link rel="stylesheet" href="./css/styleProjetin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -40,9 +40,6 @@ $msg = new Mensagem();
                 $sexo = $_POST['sexo'];
                 $email = $_POST['email'];
                 $telefone = $_POST['telefone'];
-
-
-             
             }
 
 
@@ -97,15 +94,16 @@ $msg = new Mensagem();
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
-                   
-                </div>
-               
-                 <span class="p-viewer2">
-                    <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
-                    </span>
 
-            </div> 
-            
+                </div>
+
+                <span class="p-viewer2">
+                    <i class="fa fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
+                    <i class="far fa-eye-slash" id="risco" onclick="toggle()"></i>
+                </span>
+
+            </div>
+
             <div class="genero">
                 <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" required>
                 <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" required>
@@ -126,29 +124,24 @@ $msg = new Mensagem();
     </div>
 
     <script>
-        var state = false;
-
         function toggle() {
-            if (state) {
-                document.getElementById(
-                    "senha").
-                setAttribute("type", "password");
-                document.getElementById(
-                    "olho").style.color = '#888';
-state = false;
+            var x = document.getElementById("senha");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("risco").style.display = "inline-block";
+                document.getElementById("olho").style.display = 'none';
+                document.getElementById("risco").style.color ='#000000';
+                document.getElementById("olho").style.color ='#000000';
             } else {
-                document.getElementById(
-                    "senha").
-                setAttribute("type", "text");
-                document.getElementById(
-                    "olho").style.color ='#000000';
-                state = true;
+                x.type = "password";
+                document.getElementById("risco").style.display = 'none';
+                document.getElementById("olho").style.display = 'inline-block';
+                document.getElementById("risco").style.color ='#000000';
+                document.getElementById("olho").style.color ='#000000';
             }
         }
     </script>
-    <a class="whatsapp-link" href="https://web.whatsapp.com/send?phone=559891355162" target="_blank">
-        <i class="fa fa-whatsapp"></i>
-    </a>
+
 
 </body>
 
