@@ -98,8 +98,10 @@ $msg = new Mensagem();
                 </div>
 
                 <span class="p-viewer2">
-                    <i class="fa fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
-                    <i class="far fa-eye-slash" id="risco" onclick="toggle()"></i>
+               
+                    <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
+                    <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
+                   
                 </span>
 
             </div>
