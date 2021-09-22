@@ -39,7 +39,7 @@ $_SESSION['confereNr'] = "-2";
                 <div class=" col-md-6 offset-md-3"
                      style="margin-top: 10%;">
                     <div class="card-header bg-primary border espaco
-                         text-white text-center">Validação de Login</div>
+                         text-white text-center">Validação Login</div>
                     <div class="card-body border">
                         <form method="post" action="./controller/ValidaLogin.php">
                             <div class="row espaco">
