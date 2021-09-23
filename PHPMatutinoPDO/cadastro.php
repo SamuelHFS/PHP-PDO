@@ -197,9 +197,9 @@ $btAtualizar = FALSE;
                             <div class="col-md-6">
                                 <br>
                                 <label>Login</label>
-                                <input class="form-control" type="text" name="login" value="<?php echo $pe->getLogin(); ?>">
+                                <input class="form-control" type="text" name="login" value="login">
                                 <label>Senha</label>
-                                <input class="form-control" type="password" name="senha" value="<?php echo $pe->getSenha(); ?>">
+                                <input class="form-control" type="password" name="senha" value="senha">
                                 <label>Conf. Senha</label>
                                 <input class="form-control" type="password" name="senha2" >
                                 <label>Perfil</label>
