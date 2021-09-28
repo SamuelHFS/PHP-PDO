@@ -105,7 +105,7 @@ $msg = new Mensagem();
                 </span>
 
             </div>
-
+          
             <div class="genero">
                 <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" required>
                 <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" required>
@@ -119,8 +119,15 @@ $msg = new Mensagem();
                         <span class="ponto dois"></span>
                         <span class="generoMas" value="Feminino">Feminino</span>
                     </label>
+                    
                 </div>
             </div>
+
+            <div class="input-box1">
+            <p>Já possui login?</p>
+            <a href="cadastroClientes.php">Logar</a>
+
+                </div>
             <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
         </form>
     </div>

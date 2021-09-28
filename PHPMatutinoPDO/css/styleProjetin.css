@@ -88,7 +88,13 @@ form .detalhes-usuario .input-box{
     border-color: #000000;
 }
 
-
+form .input-box1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -20px 0 5px 480px;
+  
+} 
 
 /*
 
@@ -218,6 +224,11 @@ form input[type="radio"]{
 form .detalhes-usuario .input-box{
     margin-bottom: 15px;
     width:100%;
+}
+form  .input-box1{
+   
+    justify-content: space-between;
+    margin: -20px 0 5px 480px;
 }
 
 
