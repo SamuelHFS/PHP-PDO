@@ -89,12 +89,19 @@ form .detalhes-usuario .input-box{
 }
 
 form .input-box1{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: -20px 0 5px 480px;
-  
+  position: relative;
+    
+    margin: 15px 0px 10px 0;
+    
 } 
+form .input-box1 a{
+    position: absolute;
+      color: red;
+   margin-top: -18.2px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
 
 /*
 
@@ -225,11 +232,7 @@ form .detalhes-usuario .input-box{
     margin-bottom: 15px;
     width:100%;
 }
-form  .input-box1{
-   
-    justify-content: space-between;
-    margin: -20px 0 5px 480px;
-}
+
 
 
 .p-viewer2{
@@ -270,6 +273,21 @@ form .btn{
     max-height: 300px;
     overflow-y: scroll;
 }
+form .input-box1{
+    position: relative;
+      
+      margin: -50px 10px 15px 0 ;
+    
+  } 
+  form .input-box1 a{
+    position: absolute;
+      color: red;
+   margin-top: -17px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
+  
 /*
 form .input-box i{
     position: absolute;

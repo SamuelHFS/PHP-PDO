@@ -123,12 +123,12 @@ $msg = new Mensagem();
                 </div>
             </div>
 
-            <div class="input-box1">
-            <p>Já possui login?</p>
-            <a href="cadastroClientes.php">Logar</a>
+           
+            <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
+             <div class="input-box1">
+            <p>Já possui login?</p><a href="index.php">Logar</a>
 
                 </div>
-            <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
         </form>
     </div>
 
