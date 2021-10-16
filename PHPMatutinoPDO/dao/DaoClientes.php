@@ -47,7 +47,7 @@ class DaoClientes
             }
         } else {
             $msg->setMsg("<p style='color: red;'>"
-                . "Erro na conexão com o banco de dados.</p>");
+                . "Erro na conexão com o banco de ddos.</p>");
         }
         $conn = null;
         return $msg;
