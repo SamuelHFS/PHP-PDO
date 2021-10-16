@@ -45,17 +45,22 @@ $msg = new Mensagem();
 
             $cc = new ClientesController();
             unset($_POST['cadastrar']);
-            $msg = $cc->inserirClientes(
+            $resp = $cc->inserirClientes(
 
-                $senha,
                 $nome,
-                $sexo,
+                $telefone,
                 $email,
-                $telefone
+                $senha,
+                $sexo
             );
-            echo $msg->getMsg();
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                URL='cadastroClientes.php'\">";
+            if(getType($resp) == 'object'){
+                $ce = $resp;
+                echo "<p style='color: red;'>Email já cadastrado!</p>";
+            }else{
+                echo $resp;
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                URL='cadastroClientes.php'\">";
+            }
         }
 
 
@@ -81,15 +86,17 @@ $msg = new Mensagem();
                     <input type="text" placeholder="Digite seu nome" name="nome" required value="<?php echo $ce->getNome(); ?>">
                 </div>
 
-                <div class="input-box">
-                    <span class="detalhes">Email</span>
-                    <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
-                </div>
+                
 
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular </span>
                     <input type="text" placeholder="Digite seu telefone celular" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                </div>
+
+                <div class="input-box">
+                    <span class="detalhes">Email</span>
+                    <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
@@ -107,8 +114,14 @@ $msg = new Mensagem();
             </div>
           
             <div class="genero">
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" required>
-                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" required>
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>"
+                    <?php if($ce->getSexo()!=null) { 
+                        if($ce->getSexo() == "Masculino") echo "checked = checked";
+                    }?> checked = 'checked' required>
+                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
+                    <?php if($ce->getSexo()!=null) { 
+                        if($ce->getSexo() == "Feminino") echo "checked = checked";
+                    }?>required>
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
                     <label for="ponto-1">
